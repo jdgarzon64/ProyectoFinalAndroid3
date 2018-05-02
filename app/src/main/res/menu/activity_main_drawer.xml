@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/fragment_gestion_hectareas"
+            android:title="Gestion Hectareas" />
+        <item
+            android:id="@+id/fragment_configuracion"
+            android:title="Información de la Cuenta" />
+        <item
+            android:id="@+id/fragment_registrar_hectareas"
+            android:title="Registrar Hectareas" />
+        <item
+            android:id="@+id/fragment_registro_trabajadores"
+            android:title="Registrar Trabajadores" />
+        <item
+            android:id="@+id/fragment_registro_materiales"
+            android:title="Registrar Materiales" />
+        <item
+            android:id="@+id/fragment_mostrar_hectareas_mapa"
+            android:title="Mapa de Hectareas" />
+        <item
+            android:id="@+id/fragment_consultar_clima"
+            android:title="Consultar Clima" />
+        <item
+            android:id="@+id/fragment_consultar_dolar"
+            android:title="Consultar Dolar" />
+        <item
+            android:id="@+id/fragment_salir"
+            android:title="Salir" />
+
+
+    </group>
+
+</menu>
