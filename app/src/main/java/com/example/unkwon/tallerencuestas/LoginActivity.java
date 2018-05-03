@@ -6,6 +6,7 @@ import android.annotation.TargetApi;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.app.LoaderManager.LoaderCallbacks;
@@ -34,6 +35,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import Fragments.RegistrarAdministrador;
 import Model.Controller;
 
 import static android.Manifest.permission.READ_CONTACTS;
@@ -65,6 +67,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
+    private Button email_register;
+    private Button btnAtras;
     Controller controlador;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +79,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         populateAutoComplete();
-
+        email_register = (Button) findViewById(R.id.email_register);
+        btnAtras = (Button) findViewById(R.id.btnAtras);
         mPasswordView = (EditText) findViewById(R.id.password);
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -96,10 +101,22 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             }
         });
 
+        FloatingActionButton btnAtras = (FloatingActionButton) findViewById(R.id.btnAtras);
+        btnAtras.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(), LoginActivity.class);
+                startActivity(i);
+            }
+        });
+
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
     }
-
+    public void registrar(View view) {
+        Intent i = new Intent(getApplicationContext(), RegistrarAdministrador.class);
+        startActivity(i);
+    }
     public void validarLogin(View view){
         if(mPasswordView.getText().toString().isEmpty()||mEmailView.getText().toString().isEmpty()){
             Toast.makeText(getApplicationContext(),"Por favor ingrese todos los campos",Toast.LENGTH_LONG).show();

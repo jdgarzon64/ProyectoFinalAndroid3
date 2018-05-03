@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity
     Controller controlador;
     TextView profileName;
     TextView profileCorreo;
-    Button email_register;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        email_register = (Button) findViewById(R.id.email_register);
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -103,10 +103,7 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-    public void registrar(View view) {
-        Intent i = new Intent(getApplicationContext(), RegistrarAdministrador.class);
-        startActivity(i);
-    }
+
 
     public void SendFile(View view) {
 
