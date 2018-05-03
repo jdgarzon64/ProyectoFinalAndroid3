@@ -23,9 +23,14 @@ import android.widget.TextView;
 import java.io.File;
 import java.util.ArrayList;
 
+import Fragments.ConsultarClima;
+import Fragments.ConsultarDolar;
 import Fragments.InformacionCuenta;
 import Fragments.GestionHectareas;
 import Fragments.RegistrarAdministrador;
+import Fragments.RegistrarHectarea;
+import Fragments.RegistrarMateriales;
+import Fragments.RegistrarTrabajadores;
 import Model.Controller;
 
 public class MainActivity extends AppCompatActivity
@@ -140,7 +145,21 @@ public class MainActivity extends AppCompatActivity
             fragmentManager.beginTransaction().replace(R.id.MasterPage, new GestionHectareas()).commit();
         } else if (id == R.id.fragment_configuracion) {
             fragmentManager.beginTransaction().replace(R.id.MasterPage, new InformacionCuenta()).commit();
-        } else if (id == R.id.fragment_salir) {
+        }else if (id == R.id.fragment_registrar_hectareas) {
+            fragmentManager.beginTransaction().replace(R.id.MasterPage, new RegistrarHectarea()).commit();
+        }else if (id == R.id.fragment_registro_trabajadores) {
+            fragmentManager.beginTransaction().replace(R.id.MasterPage, new RegistrarTrabajadores()).commit();
+        }else if (id == R.id.fragment_registro_materiales) {
+            fragmentManager.beginTransaction().replace(R.id.MasterPage, new RegistrarMateriales()).commit();
+        }else if (id == R.id.fragment_consultar_clima) {
+            fragmentManager.beginTransaction().replace(R.id.MasterPage, new ConsultarClima()).commit();
+        }else if (id == R.id.fragment_consultar_dolar) {
+            fragmentManager.beginTransaction().replace(R.id.MasterPage, new ConsultarDolar()).commit();
+        }
+        //else if (id == R.id.fragment_mostrar_hectareas_mapa) {
+          //  fragmentManager.beginTransaction().replace(R.id.MasterPage, new MostrarHectareas()).commit();
+       // }
+        else if (id == R.id.fragment_salir) {
 
             System.exit(0);
 
