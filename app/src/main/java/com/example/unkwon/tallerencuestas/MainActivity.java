@@ -17,6 +17,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.io.File;
@@ -24,6 +25,7 @@ import java.util.ArrayList;
 
 import Fragments.InformacionCuenta;
 import Fragments.GestionHectareas;
+import Fragments.RegistrarAdministrador;
 import Model.Controller;
 
 public class MainActivity extends AppCompatActivity
@@ -33,15 +35,17 @@ public class MainActivity extends AppCompatActivity
     Controller controlador;
     TextView profileName;
     TextView profileCorreo;
+    Button email_register;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-       // controlador = new Controller(this);
+        // controlador = new Controller(this);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        email_register = (Button) findViewById(R.id.email_register);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -75,7 +79,7 @@ public class MainActivity extends AppCompatActivity
         getMenuInflater().inflate(R.menu.main, menu);
         profileName = (TextView) findViewById(R.id.txt1);
         profileCorreo = (TextView) findViewById(R.id.txt2);
-       // cargarUserData();
+        // cargarUserData();
         return true;
     }
 
@@ -97,6 +101,11 @@ public class MainActivity extends AppCompatActivity
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void registrar(View view) {
+        Intent i = new Intent(getApplicationContext(), RegistrarAdministrador.class);
+        startActivity(i);
     }
 
     public void SendFile(View view) {

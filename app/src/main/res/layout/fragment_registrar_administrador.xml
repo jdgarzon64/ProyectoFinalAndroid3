@@ -1,0 +1,46 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="Fragments.RegistrarAdministrador">
+
+
+    <EditText
+        android:id="@+id/nombrePropietario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Nombre"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/apellidoAdministrador"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Apellido"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/documentoAdministrador"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Documento"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/nombreFinca"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Nombre Finca"
+        android:inputType="textPersonName" />
+
+    <Button
+        android:id="@+id/registrarAdministrador"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Registrar Administrador" />
+</LinearLayout>
