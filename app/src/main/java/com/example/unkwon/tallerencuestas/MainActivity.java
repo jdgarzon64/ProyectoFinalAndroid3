@@ -27,6 +27,7 @@ import Fragments.ConsultarClima;
 import Fragments.ConsultarDolar;
 import Fragments.InformacionCuenta;
 import Fragments.GestionHectareas;
+import Fragments.ListadoDeTareas;
 import Fragments.RegistrarAdministrador;
 import Fragments.RegistrarHectarea;
 import Fragments.RegistrarMateriales;
@@ -61,7 +62,7 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.MasterPage, new InformacionCuenta()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.MasterPage, new ListadoDeTareas()).commit();
         //imageView = (ImageView) findViewById(R.id.imageView);
 
         askForPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, 1);

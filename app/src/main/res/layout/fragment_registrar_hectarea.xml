@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="Fragments.RegistrarHectarea">
+    tools:context="Fragments.RegistrarHectarea"
+    android:layout_marginTop="120dp">
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -14,7 +15,8 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Nombre"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName"
+        />
 
     <ImageView
         android:id="@+id/fotoHectarea"
@@ -29,18 +31,16 @@
         android:id="@+id/agregarUbicacion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/registrarHectarea"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="213dp"
         android:text="Agregar Ubicacion" />
 
     <Button
         android:id="@+id/tomarFotoHectarea"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_above="@+id/agregarUbicacion"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="190dp"
         android:text="Tomar Foto" />
 
     <Button
@@ -49,6 +49,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="125dp"
+        android:layout_marginBottom="23dp"
         android:text="Registrar Hectarea" />
 </RelativeLayout>

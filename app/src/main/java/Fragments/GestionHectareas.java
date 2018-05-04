@@ -91,7 +91,7 @@ ListView listaCultivos;
         public Fragment getItem(int position) {
             switch (position){
                 case 0:
-                    return new Hectareas();
+                    return new InformacionHectarea();
                 case 1:
                     return new RegistrarRiego();
                 case 2:

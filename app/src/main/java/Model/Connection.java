@@ -13,9 +13,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class Connection  extends SQLiteOpenHelper {
 
-    private static final String database = "vvv.db";
+    private static final String database = "database.db";
     private static final SQLiteDatabase.CursorFactory factory = null;
-    private static final int version = 12;
+    private static final int version = 1;
     SQLiteDatabase bd;
 
     public Connection(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {

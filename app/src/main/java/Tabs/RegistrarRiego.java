@@ -70,7 +70,7 @@ public class RegistrarRiego extends Fragment {
         );
 
 */
-        FloatingActionButton update = (FloatingActionButton) view.findViewById(R.id.add);
+        FloatingActionButton update = (FloatingActionButton) view.findViewById(R.id.btnGuardarRiego);
         update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
