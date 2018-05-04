@@ -11,6 +11,7 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
 
 import com.example.unkwon.tallerencuestas.R;
@@ -26,7 +27,7 @@ public class GestionHectareas extends Fragment {
     private TabLayout tabs;
 
     private ViewPager viewPager;
-
+ListView listaCultivos;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -45,6 +46,7 @@ public class GestionHectareas extends Fragment {
         View contenedor = (View) container.getParent();
 
         appBar = (AppBarLayout) contenedor.findViewById(R.id.appbar);
+        listaCultivos = view.findViewById(R.id.listaCultivos);
 
         configView(view);
 

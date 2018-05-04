@@ -7,6 +7,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.Spinner;
 
 import com.example.unkwon.tallerencuestas.R;
 
@@ -18,14 +20,23 @@ import Model.Controller;
 public class RegistrarRiego extends Fragment {
 
     Controller controlador;
+    Spinner listaTrabajadores;
+    Spinner listaMateriales;
+    Spinner cantidadMaterial;
+    EditText fechaRiego;
+    View view;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_registrar_riego, container, false);
-        configView(v);
-        return v;
+         view = inflater.inflate(R.layout.fragment_registrar_riego, container, false);
+        configView(view);
+        listaTrabajadores = view.findViewById(R.id.listaTrabajadores);
+        listaMateriales = view.findViewById(R.id.listaMateriales);
+        cantidadMaterial = view.findViewById(R.id.cantidadMaterial);
+        fechaRiego = view.findViewById(R.id.fechaRiego);
+        return view;
     }
 
     public void configView(View view) {

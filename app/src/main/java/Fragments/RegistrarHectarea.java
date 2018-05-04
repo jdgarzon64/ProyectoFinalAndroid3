@@ -7,12 +7,20 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.example.unkwon.tallerencuestas.R;
 
 
 public class RegistrarHectarea extends Fragment {
-
+    View view;
+    EditText nombreHectarea;
+    ImageView fotoHectarea;
+    Button agregarUbicacion;
+    Button tomarFotoHectarea;
+    Button registrarHectarea;
     public RegistrarHectarea() {
         // Required empty public constructor
     }
@@ -27,6 +35,12 @@ public class RegistrarHectarea extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_registrar_hectarea, container, false);
+        view = inflater.inflate(R.layout.fragment_registrar_hectarea, container, false);
+        nombreHectarea = view.findViewById(R.id.nombreHectarea);
+        fotoHectarea = view.findViewById(R.id.fotoHectarea);
+        agregarUbicacion = view.findViewById(R.id.agregarUbicacion);
+        tomarFotoHectarea = view.findViewById(R.id.tomarFotoHectarea);
+        registrarHectarea = view.findViewById(R.id.registrarHectarea);
+        return view;
     }
 }
