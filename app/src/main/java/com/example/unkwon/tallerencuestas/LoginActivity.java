@@ -6,7 +6,6 @@ import android.annotation.TargetApi;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.app.LoaderManager.LoaderCallbacks;
@@ -35,7 +34,6 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-import Fragments.RegistrarAdministrador;
 import Model.Controller;
 
 import static android.Manifest.permission.READ_CONTACTS;

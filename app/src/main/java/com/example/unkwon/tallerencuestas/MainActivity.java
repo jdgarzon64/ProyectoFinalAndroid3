@@ -17,7 +17,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Button;
 import android.widget.TextView;
 
 import java.io.File;
@@ -28,7 +27,6 @@ import Fragments.ConsultarDolar;
 import Fragments.InformacionCuenta;
 import Fragments.GestionHectareas;
 import Fragments.ListadoDeTareas;
-import Fragments.RegistrarAdministrador;
 import Fragments.RegistrarHectarea;
 import Fragments.RegistrarMateriales;
 import Fragments.RegistrarTrabajadores;
