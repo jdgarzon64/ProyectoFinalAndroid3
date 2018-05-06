@@ -22,7 +22,7 @@ import jxl.write.WriteException;
  */
 
 public class Controller {
-/*
+
     Connection pers;
     Activity activity;
 
@@ -30,36 +30,53 @@ public class Controller {
         pers = new Connection(activity);
         this.activity=activity;
     }
-    public Usuario validarLogin(String user,String password){
-        Usuario usuario = null;
-        String consulta = "select documento, nombre, apellido, usuario, password, iva from vendedor where usuario = '"+user+"' and password = '"+password+"'";
+
+    public Trabajador validarLoginTrabajador(String user,String password){
+        Trabajador trabajador = null;
+        String consulta = "select documento, nombre, apellido, edad, usuario, password, idAdministrador" +
+                " from trabajadores where usuario = '"+user+"' and password = '"+password+"'";
+        Cursor temp= pers.ejecutarSearch(consulta);
+        if (temp.getCount() > 0) {
+            temp.moveToFirst();
+            trabajador = new Trabajador(temp.getInt(0), temp.getString(1),
+                    temp.getString(2), temp.getString(3), temp.getString(4), temp.getString(5),temp.getInt(0));
+        }
+        pers.cerrarConexion();
+        return trabajador;
+    }
+
+
+    public Administrador validarLoginAdministrador(String user,String password){
+        Administrador admin = null;
+        String consulta = "select documento, nombre, apellido, nombreFinca, usuario, password" +
+                " from administradores where usuario = '"+user+"' and password = '"+password+"'";
        Cursor temp= pers.ejecutarSearch(consulta);
         if (temp.getCount() > 0) {
             temp.moveToFirst();
-           usuario = new Usuario(temp.getInt(0), temp.getString(1),
-                    temp.getString(2), temp.getString(3), temp.getString(4), temp.getInt(5));
+           admin = new Administrador(temp.getInt(0), temp.getString(1),
+                    temp.getString(2), temp.getString(3), temp.getString(4), temp.getString(5));
         }
-
         pers.cerrarConexion();
-
-        return usuario;
+        return admin;
     }
 
-/*
-    public boolean guardarUsuario(Usuario u, int caso) {
+    public boolean guardarAdmin(Administrador admin,int caso) {
         ContentValues registro = new ContentValues();
-        registro.put("id", 0);
-        registro.put("nombre", u.getNombre());
-        registro.put("apellido", u.getApellido());
-        registro.put("correo", u.getCorreo());
-        registro.put("proyecto", u.getProyecto());
-        registro.put("fotoPath", u.getFotoPath());
-        if (caso == 0)
-            return pers.ejecutarInsert("usuario", registro);
-        else
-            return pers.ejecutarUpdate("usuario", "usuario.id = 0", registro);
+        registro.put("documento", admin.getDocumento());
+        registro.put("nombre", admin.getNombre());
+        registro.put("apellido", admin.getApellido());
+        registro.put("nombreFinca", admin.getNombreFinca());
+        registro.put("usuario", admin.getUsuario());
+        registro.put("password", admin.getPassword());
+        switch (caso) {
+            case 0:
+            return pers.ejecutarInsert("administradores", registro);
+            case 1:
+            return pers.ejecutarUpdate("administradores", "administradores.documento = "+admin.getDocumento(), registro);
+        }
+        return false;
     }
-
+/*
     public boolean guardarCiudadanoInfoBasica(Ciudadano ciudadano) {
 
         ContentValues registro = new ContentValues();

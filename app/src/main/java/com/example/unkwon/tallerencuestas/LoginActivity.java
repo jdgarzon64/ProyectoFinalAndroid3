@@ -34,7 +34,10 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import Fragments.ListadoDeTareas;
+import Model.Administrador;
 import Model.Controller;
+import Model.Trabajador;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -68,12 +71,14 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private Button email_register;
    // private Button btnAtras;
     Controller controlador;
+    public static Administrador administrador= null;
+    public static Trabajador trabajador= null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_login);
-       // controlador=new Controller(this);
+        controlador=new Controller(this);
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         populateAutoComplete();
@@ -115,11 +120,21 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             String password = mPasswordView.getText().toString();
 
           //  usuarioActual = controlador.validarLogin(user,password);
-            if(true){
+
+            administrador= controlador.validarLoginAdministrador(user,password);
+            if(administrador != null){
                 Intent i = new Intent(getApplicationContext(),MainActivity.class);
                 startActivity(i);
-            }else {
-                Toast.makeText(getApplicationContext(),"datos incorrectos",Toast.LENGTH_LONG).show();
+            }
+            else {
+                trabajador= controlador.validarLoginTrabajador(user,password);
+                if(trabajador != null){
+                    Intent i = new Intent(getApplicationContext(), ListadoDeTareas.class);
+                    startActivity(i);
+                }
+                else {
+                    Toast.makeText(getApplicationContext(),"datos incorrectos",Toast.LENGTH_LONG).show();
+                }
             }
         }
     }

@@ -3,13 +3,10 @@ package Model;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteConstraintException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-/**
- * Created by unkwon on 19/03/18.
- */
+
 
 public class Connection  extends SQLiteOpenHelper {
 
@@ -32,10 +29,10 @@ public class Connection  extends SQLiteOpenHelper {
 
 
         db.execSQL("create table administradores(documento INTEGER PRIMARY KEY, nombre text, apellido text, " +
-                " nombreFinca text)");
+                " nombreFinca text, usuario text, password text)");
 
         db.execSQL("create table trabajadores(documento INTEGER PRIMARY KEY, nombre text, apellido text, " +
-                " edad text, idAdministrador INTEGER, " +
+                " edad text, idAdministrador INTEGER, usuario text, password text, " +
                 "FOREIGN KEY (idAdministrador) REFERENCES administradores (documento) ON DELETE CASCADE)");
 
         db.execSQL("create table hectareas(idHectarea INTEGER PRIMARY KEY AUTOINCREMENT, idFoto INTEGER, idAdministrador INTEGER," +
