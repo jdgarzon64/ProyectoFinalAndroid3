@@ -31,6 +31,24 @@ public class Connection  extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
 
 
+        db.execSQL("create table administradores(documento INTEGER PRIMARY KEY, nombre text, apellido text, " +
+                " nombreFinca text)");
+
+        db.execSQL("create table trabajadores(documento INTEGER PRIMARY KEY, nombre text, apellido text, " +
+                " edad text, idAdministrador INTEGER, " +
+                "FOREIGN KEY (idAdministrador) REFERENCES administradores (documento) ON DELETE CASCADE)");
+
+        db.execSQL("create table hectareas(idHectarea INTEGER PRIMARY KEY AUTOINCREMENT, idFoto INTEGER, idAdministrador INTEGER," +
+                " FOREIGN KEY (idAdministrador) REFERENCES administradores (documento) ON DELETE CASCADE)");
+
+        db.execSQL("create table materiales(idMaterial INTEGER PRIMARY KEY AUTOINCREMENT, nombre text, cantidad text, " +
+                " marca text, descripcion text, idAdministrador INTEGER," +
+                " FOREIGN KEY (idAdministrador) REFERENCES administradores (documento) ON DELETE CASCADE)");
+
+
+/*
+
+
         db.execSQL("create table cliente(documento INTEGER PRIMARY KEY, nombre text, apellido text, " +
                 " fechanacimiento text,genero text, direccion text, telefono text)");
 
@@ -45,15 +63,15 @@ public class Connection  extends SQLiteOpenHelper {
 
         db.execSQL("insert into vendedor (documento,nombre,apellido,usuario,password,iva) values(1,'Juan David','Garzon','user','1234',20)");
 
-
+*/
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("drop table if exists vendedor");
-        db.execSQL("drop table if exists venta");
-        db.execSQL("drop table if exists producto");
-        db.execSQL("drop table if exists cliente");
+        db.execSQL("drop table if exists administradores");
+        db.execSQL("drop table if exists trabajadores");
+        db.execSQL("drop table if exists hectareas");
+        db.execSQL("drop table if exists materiales");
 
         onCreate(db);
     }
