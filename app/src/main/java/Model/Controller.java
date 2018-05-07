@@ -9,6 +9,8 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.unkwon.tallerencuestas.LoginActivity;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -28,39 +30,39 @@ public class Controller {
 
     public Controller(Activity activity) {
         pers = new Connection(activity);
-        this.activity=activity;
+        this.activity = activity;
     }
 
-    public Trabajador validarLoginTrabajador(String user,String password){
+    public Trabajador validarLoginTrabajador(String user, String password) {
         Trabajador trabajador = null;
         String consulta = "select documento, nombre, apellido, edad, usuario, password, idAdministrador" +
-                " from trabajadores where usuario = '"+user+"' and password = '"+password+"'";
-        Cursor temp= pers.ejecutarSearch(consulta);
+                " from trabajadores where usuario = '" + user + "' and password = '" + password + "'";
+        Cursor temp = pers.ejecutarSearch(consulta);
         if (temp.getCount() > 0) {
             temp.moveToFirst();
             trabajador = new Trabajador(temp.getInt(0), temp.getString(1),
-                    temp.getString(2), temp.getString(3), temp.getString(4), temp.getString(5),temp.getInt(0));
+                    temp.getString(2), temp.getString(3), temp.getString(4), temp.getString(5), temp.getInt(0));
         }
         pers.cerrarConexion();
         return trabajador;
     }
 
 
-    public Administrador validarLoginAdministrador(String user,String password){
+    public Administrador validarLoginAdministrador(String user, String password) {
         Administrador admin = null;
         String consulta = "select documento, nombre, apellido, nombreFinca, usuario, password" +
-                " from administradores where usuario = '"+user+"' and password = '"+password+"'";
-       Cursor temp= pers.ejecutarSearch(consulta);
+                " from administradores where usuario = '" + user + "' and password = '" + password + "'";
+        Cursor temp = pers.ejecutarSearch(consulta);
         if (temp.getCount() > 0) {
             temp.moveToFirst();
-           admin = new Administrador(temp.getInt(0), temp.getString(1),
+            admin = new Administrador(temp.getInt(0), temp.getString(1),
                     temp.getString(2), temp.getString(3), temp.getString(4), temp.getString(5));
         }
         pers.cerrarConexion();
         return admin;
     }
 
-    public boolean guardarAdmin(Administrador admin,int caso) {
+    public boolean guardarAdmin(Administrador admin, int caso) {
         ContentValues registro = new ContentValues();
         registro.put("documento", admin.getDocumento());
         registro.put("nombre", admin.getNombre());
@@ -70,36 +72,47 @@ public class Controller {
         registro.put("password", admin.getPassword());
         switch (caso) {
             case 0:
-            return pers.ejecutarInsert("administradores", registro);
+                return pers.ejecutarInsert("administradores", registro);
             case 1:
-            return pers.ejecutarUpdate("administradores", "administradores.documento = "+admin.getDocumento(), registro);
+                return pers.ejecutarUpdate("administradores", "administradores.documento = " + admin.getDocumento(), registro);
         }
         return false;
     }
-/*
-    public boolean guardarCiudadanoInfoBasica(Ciudadano ciudadano) {
+
+
+    public boolean guardarTrabajador(Trabajador trabajador) {
 
         ContentValues registro = new ContentValues();
 
-        registro.put("documento", ciudadano.getDocumento());
-        registro.put("nombre", ciudadano.getNombre());
-        registro.put("apellido", ciudadano.getApellido());
-        registro.put("fechaNacimiento", ciudadano.getFechaNacimiento());
-        registro.put("tipoDocumento", ciudadano.getTipoDocumento() + "");
-        registro.put("telefono", ciudadano.getTelefono());
-        registro.put("genero", ciudadano.getGenero());
-        registro.put("direccion", ciudadano.getDireccion());
+        registro.put("documento", trabajador.getDocumento());
+        registro.put("nombre", trabajador.getNombre());
+        registro.put("apellido", trabajador.getApellido());
+        registro.put("edad", trabajador.getEdad());
+        registro.put("usuario", trabajador.getUsuario());
+        registro.put("password", trabajador.getPassword());
+        registro.put("idAdministrador", trabajador.getIdAdministrador());
 
-        if (buscarCiudadano(ciudadano.getDocumento()) == null) {
-            return pers.ejecutarInsert("ciudadano", registro);
-        } else {
-            registro.remove("documento");
-            return pers.ejecutarUpdate("ciudadano", "ciudadano.documento = " + ciudadano.getDocumento(), registro);
+        if (buscarTrabajador(trabajador.getDocumento()) == null) {
+            LoginActivity.administrador.getListaTrabajadores().add(trabajador);
+            return pers.ejecutarInsert("trabajadores", registro);
         }
-
+        return false;
 
     }
-
+    public Trabajador buscarTrabajador(int documento){
+        Trabajador trabajador = null;
+        String consulta = "select documento, nombre, apellido, edad, usuario, password, idAdministrador" +
+                " from trabajadores where documento = "+documento ;
+        Cursor temp = pers.ejecutarSearch(consulta);
+        if (temp.getCount() > 0) {
+            temp.moveToFirst();
+            trabajador = new Trabajador(temp.getInt(0), temp.getString(1),
+                    temp.getString(2), temp.getString(3), temp.getString(4), temp.getString(5), temp.getInt(0));
+        }
+        pers.cerrarConexion();
+        return trabajador;
+    }
+/*
     public boolean guardarCiudadanoInfoLaboral(int documento,
                                                String empresa, String direccionEmpresa,
                                                int cargo, String fotoPath, double salario) {

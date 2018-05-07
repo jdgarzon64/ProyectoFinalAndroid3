@@ -38,6 +38,22 @@
         android:hint="Edad"
         android:inputType="number" />
 
+    <EditText
+        android:id="@+id/usuarioTrabajador"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Usuario"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/passwordTrabajador"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Contraseña"
+        android:inputType="textPersonName" />
+
     <Button
         android:id="@+id/registrarTrabajador"
         android:layout_width="match_parent"

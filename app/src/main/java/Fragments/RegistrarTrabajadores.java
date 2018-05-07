@@ -9,8 +9,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import com.example.unkwon.tallerencuestas.LoginActivity;
 import com.example.unkwon.tallerencuestas.R;
+
+import Model.Controller;
+import Model.Trabajador;
 
 
 public class RegistrarTrabajadores extends Fragment {
@@ -20,7 +25,11 @@ public class RegistrarTrabajadores extends Fragment {
     EditText apellidoTrabajador;
     EditText documentoTrabajador;
     EditText edadTrabajador;
+    EditText usuarioTrabajador;
+    EditText passwordTrabajador;
     Button registrarTrabajador;
+    Controller controlador;
+
     public RegistrarTrabajadores() {
         // Required empty public constructor
     }
@@ -40,6 +49,55 @@ public class RegistrarTrabajadores extends Fragment {
         documentoTrabajador = view.findViewById(R.id.documentoTrabajador);
         edadTrabajador = view.findViewById(R.id.edadTrabajador);
         registrarTrabajador = view.findViewById(R.id.registrarTrabajador);
+        usuarioTrabajador = view.findViewById(R.id.usuarioTrabajador);
+        passwordTrabajador = view.findViewById(R.id.passwordTrabajador);
+        controlador = new Controller(getActivity());
+        registrarTrabajador.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                registrarTrabajador(getView());
+            }
+        });
         return view;
     }
+
+
+    public void registrarTrabajador(View view) {
+        if (nombreTrabajador.getText().toString().isEmpty()
+                || apellidoTrabajador.getText().toString().isEmpty()
+                || documentoTrabajador.getText().toString().isEmpty()
+                || usuarioTrabajador.getText().toString().isEmpty()
+                || passwordTrabajador.getText().toString().isEmpty()
+                || edadTrabajador.getText().toString().isEmpty()) {
+            Toast.makeText(getContext(), "debe llenar todos los campos", Toast.LENGTH_LONG).show();
+        } else {
+            String nombre = nombreTrabajador.getText().toString();
+            String apellido = nombreTrabajador.getText().toString();
+            String documento = nombreTrabajador.getText().toString();
+            String edad = nombreTrabajador.getText().toString();
+            String usuario = usuarioTrabajador.getText().toString();
+            String password = passwordTrabajador.getText().toString();
+
+            Trabajador trabajador = new Trabajador(Integer.parseInt(documento), nombre, apellido, edad,
+                    usuario, password, LoginActivity.administrador.documento);
+
+            if (controlador.guardarTrabajador(trabajador)) {
+                Toast.makeText(getContext(), "registro exitoso", Toast.LENGTH_LONG).show();
+                limpiarCampos();
+            }else {
+                Toast.makeText(getContext(), "el usuario ya esta registrado", Toast.LENGTH_LONG).show();
+            }
+
+        }
+    }
+
+    public void limpiarCampos() {
+        nombreTrabajador.setText("");
+        apellidoTrabajador.setText("");
+        edadTrabajador.setText("");
+        documentoTrabajador.setText("");
+        usuarioTrabajador.setText("");
+        passwordTrabajador.setText("");
+    }
+
 }

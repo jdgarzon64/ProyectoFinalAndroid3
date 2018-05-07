@@ -64,9 +64,20 @@ public class RegistrarAdministrador extends AppCompatActivity {
 
             if(controlador.guardarAdmin(administrador,0)){
                 Toast.makeText(this,"Registro Exitoso",Toast.LENGTH_LONG).show();
+                limpiarCampos();
+                Intent i = new Intent(getApplicationContext(),LoginActivity.class);
+                startActivity(i);
             }
             else  Toast.makeText(this,"Fallo el registro",Toast.LENGTH_LONG).show();
         }
     }
 
+    public void limpiarCampos(){
+        nombrePropietario.setText("");
+        apellidoAdministrador.setText("");
+        documentoAdministrador.setText("");
+        nombreFinca.setText("");
+        usuarioAdministrador.setText("");
+        passwordAdministrador.setText("");
+    }
 }

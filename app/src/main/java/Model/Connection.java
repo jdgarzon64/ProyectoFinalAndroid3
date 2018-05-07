@@ -29,10 +29,10 @@ public class Connection  extends SQLiteOpenHelper {
 
 
         db.execSQL("create table administradores(documento INTEGER PRIMARY KEY, nombre text, apellido text, " +
-                " nombreFinca text, usuario text, password text)");
+                " nombreFinca text, usuario text unique, password text)");
 
         db.execSQL("create table trabajadores(documento INTEGER PRIMARY KEY, nombre text, apellido text, " +
-                " edad text, idAdministrador INTEGER, usuario text, password text, " +
+                " edad text, idAdministrador INTEGER, usuario text unique, password text, " +
                 "FOREIGN KEY (idAdministrador) REFERENCES administradores (documento) ON DELETE CASCADE)");
 
         db.execSQL("create table hectareas(idHectarea INTEGER PRIMARY KEY AUTOINCREMENT, idFoto INTEGER, idAdministrador INTEGER," +
