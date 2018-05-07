@@ -17,6 +17,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import java.io.File;
@@ -27,10 +28,12 @@ import Fragments.ConsultarDolar;
 import Fragments.InformacionCuenta;
 import Fragments.GestionHectareas;
 import Fragments.ListadoDeTareas;
+import Fragments.ListadoTrabajadores;
 import Fragments.RegistrarHectarea;
 import Fragments.RegistrarMateriales;
 import Fragments.RegistrarTrabajadores;
 import Model.Controller;
+import Model.Trabajador;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -45,8 +48,8 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        // controlador = new Controller(this);
-
+        controlador = new Controller(this);
+        LoginActivity.administrador.setListaTrabajadores(controlador.listarTrabajadores());
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -108,7 +111,6 @@ public class MainActivity extends AppCompatActivity
     }
 
 
-
     public void SendFile(View view) {
 
         File filelocation = new File(getExternalFilesDir(null) + "/HojasDeCalculo/");
@@ -144,20 +146,22 @@ public class MainActivity extends AppCompatActivity
             fragmentManager.beginTransaction().replace(R.id.MasterPage, new GestionHectareas()).commit();
         } else if (id == R.id.fragment_configuracion) {
             fragmentManager.beginTransaction().replace(R.id.MasterPage, new InformacionCuenta()).commit();
-        }else if (id == R.id.fragment_registrar_hectareas) {
+        } else if (id == R.id.fragment_registrar_hectareas) {
             fragmentManager.beginTransaction().replace(R.id.MasterPage, new RegistrarHectarea()).commit();
-        }else if (id == R.id.fragment_registro_trabajadores) {
+        } else if (id == R.id.fragment_registro_trabajadores) {
             fragmentManager.beginTransaction().replace(R.id.MasterPage, new RegistrarTrabajadores()).commit();
-        }else if (id == R.id.fragment_registro_materiales) {
+        } else if (id == R.id.fragment_registro_materiales) {
             fragmentManager.beginTransaction().replace(R.id.MasterPage, new RegistrarMateriales()).commit();
-        }else if (id == R.id.fragment_consultar_clima) {
+        } else if (id == R.id.fragment_consultar_clima) {
             fragmentManager.beginTransaction().replace(R.id.MasterPage, new ConsultarClima()).commit();
-        }else if (id == R.id.fragment_consultar_dolar) {
+        } else if (id == R.id.fragment_consultar_dolar) {
             fragmentManager.beginTransaction().replace(R.id.MasterPage, new ConsultarDolar()).commit();
+        } else if (id == R.id.fragment_listado_trabajadores) {
+            fragmentManager.beginTransaction().replace(R.id.MasterPage, new ListadoTrabajadores()).commit();
         }
         //else if (id == R.id.fragment_mostrar_hectareas_mapa) {
-          //  fragmentManager.beginTransaction().replace(R.id.MasterPage, new MostrarHectareas()).commit();
-       // }
+        //  fragmentManager.beginTransaction().replace(R.id.MasterPage, new MostrarHectareas()).commit();
+        // }
         else if (id == R.id.fragment_salir) {
 
             System.exit(0);
@@ -187,6 +191,7 @@ public class MainActivity extends AppCompatActivity
         return res;
 
     }
+
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {

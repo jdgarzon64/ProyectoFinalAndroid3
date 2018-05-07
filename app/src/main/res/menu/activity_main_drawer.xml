@@ -15,6 +15,9 @@
             android:id="@+id/fragment_registro_trabajadores"
             android:title="Registrar Trabajadores" />
         <item
+            android:id="@+id/fragment_listado_trabajadores"
+            android:title="Listado de Trabajadores" />
+        <item
             android:id="@+id/fragment_registro_materiales"
             android:title="Registrar Materiales" />
         <item

@@ -19,9 +19,7 @@ import java.util.List;
 import Infraestructure.HojaDeCalculo;
 import jxl.write.WriteException;
 
-/**
- * Created by unkwon on 19/03/18.
- */
+
 
 public class Controller {
 
@@ -62,7 +60,22 @@ public class Controller {
         return admin;
     }
 
+    public boolean permitSave(String user1) {
+        String consultaTrabajador = "select documento, nombre, apellido, edad, usuario, password, idAdministrador" +
+                " from trabajadores where usuario = '" + user1 + "'";
+        Cursor temp1 = pers.ejecutarSearch(consultaTrabajador);
+        String consultaAdministrador = "select documento, nombre, apellido, nombreFinca, usuario, password" +
+                " from administradores where usuario = '" + user1 + "'";
+        Cursor temp2 = pers.ejecutarSearch(consultaAdministrador);
+
+        if (temp1.getCount() == 0 && temp2.getCount() == 0) {
+            return true;
+        }
+        return false;
+    }
+
     public boolean guardarAdmin(Administrador admin, int caso) {
+
         ContentValues registro = new ContentValues();
         registro.put("documento", admin.getDocumento());
         registro.put("nombre", admin.getNombre());
@@ -72,37 +85,42 @@ public class Controller {
         registro.put("password", admin.getPassword());
         switch (caso) {
             case 0:
-                return pers.ejecutarInsert("administradores", registro);
+                if (permitSave(admin.getUsuario())) {
+                    return pers.ejecutarInsert("administradores", registro);
+                }
             case 1:
                 return pers.ejecutarUpdate("administradores", "administradores.documento = " + admin.getDocumento(), registro);
         }
+
         return false;
     }
 
 
     public boolean guardarTrabajador(Trabajador trabajador) {
+        if (permitSave(trabajador.getUsuario())) {
+            ContentValues registro = new ContentValues();
 
-        ContentValues registro = new ContentValues();
+            registro.put("documento", trabajador.getDocumento());
+            registro.put("nombre", trabajador.getNombre());
+            registro.put("apellido", trabajador.getApellido());
+            registro.put("edad", trabajador.getEdad());
+            registro.put("usuario", trabajador.getUsuario());
+            registro.put("password", trabajador.getPassword());
+            registro.put("idAdministrador", trabajador.getIdAdministrador());
 
-        registro.put("documento", trabajador.getDocumento());
-        registro.put("nombre", trabajador.getNombre());
-        registro.put("apellido", trabajador.getApellido());
-        registro.put("edad", trabajador.getEdad());
-        registro.put("usuario", trabajador.getUsuario());
-        registro.put("password", trabajador.getPassword());
-        registro.put("idAdministrador", trabajador.getIdAdministrador());
-
-        if (buscarTrabajador(trabajador.getDocumento()) == null) {
-            LoginActivity.administrador.getListaTrabajadores().add(trabajador);
-            return pers.ejecutarInsert("trabajadores", registro);
+            if (buscarTrabajador(trabajador.getDocumento()) == null) {
+                LoginActivity.administrador.getListaTrabajadores().add(trabajador);
+                return pers.ejecutarInsert("trabajadores", registro);
+            }
         }
         return false;
 
     }
-    public Trabajador buscarTrabajador(int documento){
+
+    public Trabajador buscarTrabajador(int documento) {
         Trabajador trabajador = null;
         String consulta = "select documento, nombre, apellido, edad, usuario, password, idAdministrador" +
-                " from trabajadores where documento = "+documento ;
+                " from trabajadores where documento = " + documento;
         Cursor temp = pers.ejecutarSearch(consulta);
         if (temp.getCount() > 0) {
             temp.moveToFirst();
@@ -111,6 +129,26 @@ public class Controller {
         }
         pers.cerrarConexion();
         return trabajador;
+    }
+
+    public ArrayList<Trabajador> listarTrabajadores() {
+
+        ArrayList<Trabajador> listaTrabajadores = new ArrayList<>();
+
+        String consulta = "select documento, nombre, apellido, edad, usuario, password, idAdministrador" +
+                " from trabajadores where idAdministrador = "+LoginActivity.administrador.getDocumento();
+
+        Cursor temp = pers.ejecutarSearch(consulta);
+
+        if (temp.moveToFirst()) {
+            do {
+                Trabajador trabajador = new Trabajador(temp.getInt(0),
+                        temp.getString(1), temp.getString(2), temp.getString(3),
+                        temp.getString(4), temp.getString(5), temp.getInt(6));
+                listaTrabajadores.add(trabajador);
+            } while (temp.moveToNext());
+        }
+        return listaTrabajadores;
     }
 /*
     public boolean guardarCiudadanoInfoLaboral(int documento,
