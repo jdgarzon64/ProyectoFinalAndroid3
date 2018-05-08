@@ -41,6 +41,21 @@ public class RegistrarHectarea extends Fragment {
         agregarUbicacion = view.findViewById(R.id.agregarUbicacion);
         tomarFotoHectarea = view.findViewById(R.id.tomarFotoHectarea);
         registrarHectarea = view.findViewById(R.id.registrarHectarea);
+
+        agregarUbicacion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                agregarUbicacion(getView());
+            }
+        });
+
         return view;
     }
+
+
+    public void agregarUbicacion(View view){
+
+    }
+
+
 }

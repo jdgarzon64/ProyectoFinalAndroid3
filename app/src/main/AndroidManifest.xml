@@ -50,7 +50,10 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity android:name=".RegistrarAdministrador"></activity>
+        <activity android:name=".RegistrarAdministrador" />
+        <activity
+            android:name=".maps.AgregarUbicacion"
+            android:label="@string/title_activity_agregar_ubicacion"></activity>
     </application>
 
 </manifest>

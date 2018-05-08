@@ -9,8 +9,8 @@ public class Material {
     public String descripcion;
     public int idAdministrador;
 
-    public Material(int idMaterial, String nombre, String cantidad, String marca, String descripcion, int idAdministrador) {
-        this.idMaterial = idMaterial;
+    public Material(String nombre, String cantidad, String marca, String descripcion, int idAdministrador) {
+        this.idMaterial = 0;
         this.nombre = nombre;
         this.cantidad = cantidad;
         this.marca = marca;

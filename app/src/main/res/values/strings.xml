@@ -24,4 +24,5 @@
         completions."
     </string>
     <string name="title_activity_mostrar_hectareas">Map</string>
+    <string name="title_activity_agregar_ubicacion">Map</string>
 </resources>
