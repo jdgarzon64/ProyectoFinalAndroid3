@@ -20,7 +20,6 @@ import Infraestructure.HojaDeCalculo;
 import jxl.write.WriteException;
 
 
-
 public class Controller {
 
     Connection pers;
@@ -30,6 +29,37 @@ public class Controller {
         pers = new Connection(activity);
         this.activity = activity;
     }
+
+    public boolean guardarMaterial(Material material) {
+        ContentValues registro = new ContentValues();
+
+        registro.put("nombre", material.getNombre());
+        registro.put("cantidad", material.getCantidad());
+        registro.put("marca", material.getMarca());
+        registro.put("descripcion", material.getDescripcion());
+        registro.put("idAdministrador", material.getIdAdministrador());
+
+        if (buscarMaterial(material.getNombre()) == null) {
+            return pers.ejecutarInsert("materiales", registro);
+        } else {
+            return pers.ejecutarUpdate("materiales", "materiales.nombre = " + material.getNombre(), registro);
+        }
+    }
+
+    public Material buscarMaterial(String nombre) {
+        Material material = null;
+        String consulta = "select nombre, cantidad, marca, descripcion, idAdministrador" +
+                " from Materiales where nombre = " + nombre;
+        Cursor temp = pers.ejecutarSearch(consulta);
+        if (temp.getCount() > 0) {
+            temp.moveToFirst();
+            material = new Material(temp.getString(0), temp.getString(1),
+                    temp.getString(2), temp.getString(3), temp.getInt(4));
+        }
+        pers.cerrarConexion();
+        return material;
+    }
+
 
     public Trabajador validarLoginTrabajador(String user, String password) {
         Trabajador trabajador = null;
@@ -136,7 +166,7 @@ public class Controller {
         ArrayList<Trabajador> listaTrabajadores = new ArrayList<>();
 
         String consulta = "select documento, nombre, apellido, edad, usuario, password, idAdministrador" +
-                " from trabajadores where idAdministrador = "+LoginActivity.administrador.getDocumento();
+                " from trabajadores where idAdministrador = " + LoginActivity.administrador.getDocumento();
 
         Cursor temp = pers.ejecutarSearch(consulta);
 

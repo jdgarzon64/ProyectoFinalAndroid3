@@ -38,7 +38,7 @@ public class Connection  extends SQLiteOpenHelper {
         db.execSQL("create table hectareas(idHectarea INTEGER PRIMARY KEY AUTOINCREMENT, idFoto INTEGER, idAdministrador INTEGER," +
                 " FOREIGN KEY (idAdministrador) REFERENCES administradores (documento) ON DELETE CASCADE)");
 
-        db.execSQL("create table materiales(idMaterial INTEGER PRIMARY KEY AUTOINCREMENT, nombre text, cantidad text, " +
+        db.execSQL("create table materiales(idMaterial INTEGER PRIMARY KEY AUTOINCREMENT, nombre text unique, cantidad text, " +
                 " marca text, descripcion text, idAdministrador INTEGER," +
                 " FOREIGN KEY (idAdministrador) REFERENCES administradores (documento) ON DELETE CASCADE)");
 
