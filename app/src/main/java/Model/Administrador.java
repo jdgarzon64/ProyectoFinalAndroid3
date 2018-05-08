@@ -11,8 +11,8 @@ public class Administrador {
     public String usuario;
     public String password;
     ArrayList<Trabajador>listaTrabajadores;
-    ArrayList<Trabajador>listaMateriales;
-    ArrayList<Trabajador>listaHectareas;
+    ArrayList<Material>listaMateriales;
+    ArrayList<Hectarea>listaHectareas;
 
     public Administrador(int documento, String nombre, String apellido, String nombreFinca,String usuario,String password) {
         this.documento = documento;
@@ -50,19 +50,19 @@ public class Administrador {
         this.listaTrabajadores = listaTrabajadores;
     }
 
-    public ArrayList<Trabajador> getListaMateriales() {
+    public ArrayList<Material> getListaMateriales() {
         return listaMateriales;
     }
 
-    public void setListaMateriales(ArrayList<Trabajador> listaMateriales) {
+    public void setListaMateriales(ArrayList<Material> listaMateriales) {
         this.listaMateriales = listaMateriales;
     }
 
-    public ArrayList<Trabajador> getListaHectareas() {
+    public ArrayList<Hectarea> getListaHectareas() {
         return listaHectareas;
     }
 
-    public void setListaHectareas(ArrayList<Trabajador> listaHectareas) {
+    public void setListaHectareas(ArrayList<Hectarea> listaHectareas) {
         this.listaHectareas = listaHectareas;
     }
 

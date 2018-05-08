@@ -71,9 +71,18 @@ public class RegistrarMateriales extends Fragment {
 
             if (controlador.guardarMaterial(material)) {
                 Toast.makeText(getContext(), "Registro exitoso", Toast.LENGTH_LONG).show();
+
+                limpiarCampos();
             } else {
                 Toast.makeText(getContext(), "Error en el registro", Toast.LENGTH_LONG).show();
             }
         }
+    }
+
+    public void limpiarCampos(){
+        nombreMaterial.setText("");
+        cantidadMaterial.setText("");
+        marcaMaterial.setText("");
+        descripcionMaterial.setText("");
     }
 }

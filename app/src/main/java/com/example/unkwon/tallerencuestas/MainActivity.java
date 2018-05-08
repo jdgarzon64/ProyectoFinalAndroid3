@@ -18,6 +18,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import java.io.File;
@@ -28,6 +29,7 @@ import Fragments.ConsultarDolar;
 import Fragments.InformacionCuenta;
 import Fragments.GestionHectareas;
 import Fragments.ListadoDeTareas;
+import Fragments.ListadoMateriales;
 import Fragments.ListadoTrabajadores;
 import Fragments.RegistrarHectarea;
 import Fragments.RegistrarMateriales;
@@ -41,7 +43,7 @@ public class MainActivity extends AppCompatActivity
 
     Controller controlador;
     TextView profileName;
-    TextView profileCorreo;
+    TextView profileApellido;
 
 
     @Override
@@ -50,6 +52,7 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         controlador = new Controller(this);
         LoginActivity.administrador.setListaTrabajadores(controlador.listarTrabajadores());
+        LoginActivity.administrador.setListaMateriales(controlador.listarMateriales());
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -85,7 +88,9 @@ public class MainActivity extends AppCompatActivity
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         profileName = (TextView) findViewById(R.id.txt1);
-        profileCorreo = (TextView) findViewById(R.id.txt2);
+        profileApellido = (TextView) findViewById(R.id.txt2);
+        profileName.setText(LoginActivity.administrador.getNombre());
+        profileApellido.setText(LoginActivity.administrador.getApellido());
         // cargarUserData();
         return true;
     }
@@ -158,6 +163,8 @@ public class MainActivity extends AppCompatActivity
             fragmentManager.beginTransaction().replace(R.id.MasterPage, new ConsultarDolar()).commit();
         } else if (id == R.id.fragment_listado_trabajadores) {
             fragmentManager.beginTransaction().replace(R.id.MasterPage, new ListadoTrabajadores()).commit();
+        } else if (id == R.id.fragment_listado_materiales) {
+            fragmentManager.beginTransaction().replace(R.id.MasterPage, new ListadoMateriales()).commit();
         }
         //else if (id == R.id.fragment_mostrar_hectareas_mapa) {
         //  fragmentManager.beginTransaction().replace(R.id.MasterPage, new MostrarHectareas()).commit();

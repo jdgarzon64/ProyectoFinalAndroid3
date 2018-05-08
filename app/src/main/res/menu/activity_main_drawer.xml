@@ -21,6 +21,9 @@
             android:id="@+id/fragment_registro_materiales"
             android:title="Registrar Materiales" />
         <item
+            android:id="@+id/fragment_listado_materiales"
+            android:title="Listado Materiales" />
+        <item
             android:id="@+id/fragment_mostrar_hectareas_mapa"
             android:title="Mapa de Hectareas" />
         <item

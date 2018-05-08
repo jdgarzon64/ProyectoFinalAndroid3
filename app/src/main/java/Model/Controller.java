@@ -40,16 +40,32 @@ public class Controller {
         registro.put("idAdministrador", material.getIdAdministrador());
 
         if (buscarMaterial(material.getNombre()) == null) {
-            return pers.ejecutarInsert("materiales", registro);
+            if (pers.ejecutarInsert("materiales", registro)) {
+                LoginActivity.administrador.getListaMateriales().add(material);
+                return true;
+            }
         } else {
-            return pers.ejecutarUpdate("materiales", "materiales.nombre = " + material.getNombre(), registro);
+            if (pers.ejecutarUpdate("materiales", "materiales.nombre = " + material.getNombre(), registro)) {
+                actualizarMaterial(material);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void actualizarMaterial(Material material) {
+        for(int i =0;i<LoginActivity.administrador.getListaMateriales().size();i++){
+            if(LoginActivity.administrador.getListaMateriales().get(i).getNombre().equals(material.getNombre())){
+                LoginActivity.administrador.getListaMateriales().remove(i);
+                LoginActivity.administrador.getListaMateriales().add(material);
+            }
         }
     }
 
     public Material buscarMaterial(String nombre) {
         Material material = null;
         String consulta = "select nombre, cantidad, marca, descripcion, idAdministrador" +
-                " from Materiales where nombre = " + nombre;
+                " from materiales where nombre = '" + nombre+"'";
         Cursor temp = pers.ejecutarSearch(consulta);
         if (temp.getCount() > 0) {
             temp.moveToFirst();
@@ -179,6 +195,23 @@ public class Controller {
             } while (temp.moveToNext());
         }
         return listaTrabajadores;
+    }
+
+    public ArrayList<Material> listarMateriales() {
+        ArrayList<Material> listaMateriales = new ArrayList<>();
+
+        String consulta = "select nombre, cantidad, marca, descripcion, idAdministrador" +
+                " from materiales where idAdministrador = " + LoginActivity.administrador.getDocumento();
+        Cursor temp = pers.ejecutarSearch(consulta);
+        if (temp.moveToFirst()) {
+            do {
+                Material material = new Material(temp.getString(0),
+                        temp.getString(1), temp.getString(2), temp.getString(3),
+                        temp.getInt(4));
+                listaMateriales.add(material);
+            } while (temp.moveToNext());
+        }
+        return listaMateriales;
     }
 /*
     public boolean guardarCiudadanoInfoLaboral(int documento,
