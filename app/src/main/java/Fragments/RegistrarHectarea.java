@@ -1,6 +1,7 @@
 package Fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -12,6 +13,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.example.unkwon.tallerencuestas.R;
+import com.example.unkwon.tallerencuestas.maps.UbicacionHectarea;
 
 
 public class RegistrarHectarea extends Fragment {
@@ -54,7 +56,8 @@ public class RegistrarHectarea extends Fragment {
 
 
     public void agregarUbicacion(View view){
-
+        Intent i = new Intent(getContext(), UbicacionHectarea.class);
+        startActivity(i);
     }
 
 
