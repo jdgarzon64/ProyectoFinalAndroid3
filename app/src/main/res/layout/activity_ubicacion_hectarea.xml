@@ -6,4 +6,16 @@
     android:name="com.google.android.gms.maps.SupportMapFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".maps.UbicacionHectarea" />
+    tools:context=".maps.UbicacionHectarea">
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/volverRegistroHectarea"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginBottom="20dp"
+        android:layout_marginRight="20dp"
+        android:src="@android:drawable/ic_media_previous"
+        map:backgroundTint="#FB8C00" />
+</fragment>
+

@@ -1,14 +1,19 @@
 package com.example.unkwon.tallerencuestas.maps;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Toast;
 
+import com.example.unkwon.tallerencuestas.LoginActivity;
 import com.example.unkwon.tallerencuestas.R;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -27,6 +32,7 @@ public class UbicacionHectarea extends FragmentActivity implements OnMapReadyCal
     private LocationManager locationManager;
     private static final long MIN_TIME = 400;
     private static final float MIN_DISTANCE = 1000;
+    public static LatLng latLngActual = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +43,17 @@ public class UbicacionHectarea extends FragmentActivity implements OnMapReadyCal
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         locationManager = (LocationManager) getSystemService(getBaseContext().LOCATION_SERVICE);
+        FloatingActionButton atras = (FloatingActionButton) findViewById(R.id.volverRegistroHectarea);
+        atras.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    finish();
+                } catch (Throwable throwable) {
+                    Toast.makeText(getApplicationContext(),"no se pudo volver",Toast.LENGTH_LONG).show();
+                }
+            }
+        });
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
@@ -98,10 +115,12 @@ public class UbicacionHectarea extends FragmentActivity implements OnMapReadyCal
         if (marker == null) {
             marker = mMap.addMarker(new MarkerOptions().position(latLng).
                     icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN)));
+            this.latLngActual = latLng;
         } else {
             marker.remove();
             marker = mMap.addMarker(new MarkerOptions().position(latLng).
                     icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN)));
+            this.latLngActual = latLng;
         }
     }
 
