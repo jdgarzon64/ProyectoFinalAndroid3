@@ -50,7 +50,6 @@ public class ConsultarDolar extends Fragment {
             public void processFinish(Object o) {
                 Gson gson = new Gson();
                 Moneda moneda = gson.fromJson(o.toString(),Moneda.class);
-                Toast.makeText(getContext(), moneda.getQuotes().getUSDCOP()+"", Toast.LENGTH_LONG).show();
                 precioDolar.setText(moneda.getQuotes().getUSDCOP()+" Pesos");
             }
         });

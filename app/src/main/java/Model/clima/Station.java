@@ -1,5 +1,8 @@
 package Model.clima;
 
+import java.util.Map;
+import com.fasterxml.jackson.annotation.*;
+
 public class Station {
     private String brand;
     private String country;
@@ -14,117 +17,63 @@ public class Station {
     private String station;
     private String timezone;
 
-    public Station(String brand, String country, String created, String createdLocale, double latitude, String location, double longitude, String model, String name, String state, String station, String timezone) {
-        this.brand = brand;
-        this.country = country;
-        this.created = created;
-        this.createdLocale = createdLocale;
-        this.latitude = latitude;
-        this.location = location;
-        this.longitude = longitude;
-        this.model = model;
-        this.name = name;
-        this.state = state;
-        this.station = station;
-        this.timezone = timezone;
-    }
+    @JsonProperty("brand")
+    public String getBrand() { return brand; }
+    @JsonProperty("brand")
+    public void setBrand(String value) { this.brand = value; }
 
-    public Station() {
-    }
+    @JsonProperty("country")
+    public String getCountry() { return country; }
+    @JsonProperty("country")
+    public void setCountry(String value) { this.country = value; }
 
-    public String getBrand() {
-        return brand;
-    }
+    @JsonProperty("created")
+    public String getCreated() { return created; }
+    @JsonProperty("created")
+    public void setCreated(String value) { this.created = value; }
 
-    public void setBrand(String value) {
-        this.brand = value;
-    }
+    @JsonProperty("created_locale")
+    public String getCreatedLocale() { return createdLocale; }
+    @JsonProperty("created_locale")
+    public void setCreatedLocale(String value) { this.createdLocale = value; }
 
-    public String getCountry() {
-        return country;
-    }
+    @JsonProperty("latitude")
+    public double getLatitude() { return latitude; }
+    @JsonProperty("latitude")
+    public void setLatitude(double value) { this.latitude = value; }
 
-    public void setCountry(String value) {
-        this.country = value;
-    }
+    @JsonProperty("location")
+    public String getLocation() { return location; }
+    @JsonProperty("location")
+    public void setLocation(String value) { this.location = value; }
 
-    public String getCreated() {
-        return created;
-    }
+    @JsonProperty("longitude")
+    public double getLongitude() { return longitude; }
+    @JsonProperty("longitude")
+    public void setLongitude(double value) { this.longitude = value; }
 
-    public void setCreated(String value) {
-        this.created = value;
-    }
+    @JsonProperty("model")
+    public String getModel() { return model; }
+    @JsonProperty("model")
+    public void setModel(String value) { this.model = value; }
 
-    public String getCreatedLocale() {
-        return createdLocale;
-    }
+    @JsonProperty("name")
+    public String getName() { return name; }
+    @JsonProperty("name")
+    public void setName(String value) { this.name = value; }
 
-    public void setCreatedLocale(String value) {
-        this.createdLocale = value;
-    }
+    @JsonProperty("state")
+    public String getState() { return state; }
+    @JsonProperty("state")
+    public void setState(String value) { this.state = value; }
 
-    public double getLatitude() {
-        return latitude;
-    }
+    @JsonProperty("station")
+    public String getStation() { return station; }
+    @JsonProperty("station")
+    public void setStation(String value) { this.station = value; }
 
-    public void setLatitude(double value) {
-        this.latitude = value;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String value) {
-        this.location = value;
-    }
-
-    public double getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(double value) {
-        this.longitude = value;
-    }
-
-    public String getModel() {
-        return model;
-    }
-
-    public void setModel(String value) {
-        this.model = value;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String value) {
-        this.name = value;
-    }
-
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String value) {
-        this.state = value;
-    }
-
-    public String getStation() {
-        return station;
-    }
-
-    public void setStation(String value) {
-        this.station = value;
-    }
-
-    public String getTimezone() {
-        return timezone;
-    }
-
-    public void setTimezone(String value) {
-        this.timezone = value;
-    }
+    @JsonProperty("timezone")
+    public String getTimezone() { return timezone; }
+    @JsonProperty("timezone")
+    public void setTimezone(String value) { this.timezone = value; }
 }

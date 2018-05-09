@@ -127,7 +127,7 @@ public class ClsServiceGeneric extends AsyncTask<String, String, String> {
     @Override
     protected void onPostExecute(String result) {
         try{
-            Toast.makeText(activity,result.toString(),Toast.LENGTH_LONG).show();
+          //  Toast.makeText(activity,"buffer :"+buffer.toString(),Toast.LENGTH_LONG).show();
         delegate.processFinish(buffer.toString());
         carga.setVisibility(View.INVISIBLE);
         /*

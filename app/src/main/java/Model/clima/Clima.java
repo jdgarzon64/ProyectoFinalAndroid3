@@ -1,50 +1,31 @@
 package Model.clima;
 
+import java.util.Map;
+import com.fasterxml.jackson.annotation.*;
+
 public class Clima {
     private Credits credits;
     private CurrentDataAgroclimatic currentDataAgroclimatic;
     private CurrentDataClimatic currentDataClimatic;
     private Station station;
 
-    public Clima(Credits credits, CurrentDataAgroclimatic currentDataAgroclimatic, CurrentDataClimatic currentDataClimatic, Station station) {
-        this.credits = credits;
-        this.currentDataAgroclimatic = currentDataAgroclimatic;
-        this.currentDataClimatic = currentDataClimatic;
-        this.station = station;
-    }
+    @JsonProperty("Credits")
+    public Credits getCredits() { return credits; }
+    @JsonProperty("Credits")
+    public void setCredits(Credits value) { this.credits = value; }
 
-    public Clima() {
-    }
+    @JsonProperty("CurrentDataAgroclimatic")
+    public CurrentDataAgroclimatic getCurrentDataAgroclimatic() { return currentDataAgroclimatic; }
+    @JsonProperty("CurrentDataAgroclimatic")
+    public void setCurrentDataAgroclimatic(CurrentDataAgroclimatic value) { this.currentDataAgroclimatic = value; }
 
-    public Credits getCredits() {
-        return credits;
-    }
+    @JsonProperty("CurrentDataClimatic")
+    public CurrentDataClimatic getCurrentDataClimatic() { return currentDataClimatic; }
+    @JsonProperty("CurrentDataClimatic")
+    public void setCurrentDataClimatic(CurrentDataClimatic value) { this.currentDataClimatic = value; }
 
-    public void setCredits(Credits value) {
-        this.credits = value;
-    }
-
-    public CurrentDataAgroclimatic getCurrentDataAgroclimatic() {
-        return currentDataAgroclimatic;
-    }
-
-    public void setCurrentDataAgroclimatic(CurrentDataAgroclimatic value) {
-        this.currentDataAgroclimatic = value;
-    }
-
-    public CurrentDataClimatic getCurrentDataClimatic() {
-        return currentDataClimatic;
-    }
-
-    public void setCurrentDataClimatic(CurrentDataClimatic value) {
-        this.currentDataClimatic = value;
-    }
-
-    public Station getStation() {
-        return station;
-    }
-
-    public void setStation(Station value) {
-        this.station = value;
-    }
+    @JsonProperty("Station")
+    public Station getStation() { return station; }
+    @JsonProperty("Station")
+    public void setStation(Station value) { this.station = value; }
 }

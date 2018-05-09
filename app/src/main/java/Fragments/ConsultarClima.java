@@ -11,10 +11,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.unkwon.tallerencuestas.R;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import java.io.IOException;
+
 import Infraestructure.AsyncResponse;
 import Infraestructure.ClsServiceGeneric;
 import Model.clima.Clima;
+import Model.clima.Converter;
 
 
 public class ConsultarClima extends Fragment {
@@ -43,7 +49,8 @@ public class ConsultarClima extends Fragment {
         velocidadViento = view.findViewById(R.id.velocidadViento);
         carga = (ProgressBar) view.findViewById(R.id.progressBar2);
         carga.setVisibility(View.INVISIBLE);
-        gson = new Gson();
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gson = gsonBuilder.create();
         cargarValor();
         return view;
     }
@@ -52,18 +59,14 @@ public class ConsultarClima extends Fragment {
         ClsServiceGeneric asyncTask = new ClsServiceGeneric("http://api.meteoagro.co/v1?apikey=62BLYHT5VCIUVZ6Q9GN4&idstation=COLCAAR75", "", "", getActivity(), carga, new AsyncResponse() {
             @Override
             public void processFinish(Object o) {
-                Toast.makeText(getContext(),o.toString(),Toast.LENGTH_LONG).show();
-
-
-                Clima clima = gson.fromJson(o.toString(),Clima.class);
-                String aux = clima.getCurrentDataClimatic().getRelativeHumidity()+"%";
-                Toast.makeText(getContext(),aux.toString(),Toast.LENGTH_LONG).show();
-                humedad.setText(aux);
-/*
-                temperatura.setText(String.valueOf(clima.getCurrentDataClimatic().getTempC()));
-                humedad.setText(String.valueOf(clima.getCurrentDataClimatic().getRelativeHumidity()+"%"));
-                velocidadViento.setText(String.valueOf(clima.getCurrentDataClimatic().getWindSpeedKmh()+""));
-*/
+                try {
+                    Clima  clima = Converter.fromJsonString(o.toString());
+                    temperatura.setText(String.valueOf(clima.getCurrentDataClimatic().getTempC()));
+                    humedad.setText(String.valueOf(clima.getCurrentDataClimatic().getRelativeHumidity()+"%"));
+                    velocidadViento.setText(String.valueOf(clima.getCurrentDataClimatic().getWindGustKmh()+" Km/h"));
+                } catch (IOException e) {
+                    Toast.makeText(getContext(),e.getMessage(),Toast.LENGTH_LONG).show();
+                }
             }
         });
         asyncTask.execute();
