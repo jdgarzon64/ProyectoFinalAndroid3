@@ -9,7 +9,7 @@ public class Hectarea {
     public String longitud;
     public String nombre;
 
-    public Hectarea(String idFoto, int idAdministrador, String latitud, String longitud, String nombre) {
+    public Hectarea(String idFoto,String nombre, String latitud,String longitud,int idAdministrador) {
         this.idFoto = idFoto;
         this.idAdministrador = idAdministrador;
         this.latitud = latitud;

@@ -124,9 +124,9 @@ public class RegistrarHectarea extends Fragment {
                 } else{
                     String nombre = nombreHectarea.getText().toString();
                     //String idFoto, int idAdministrador, String latitud, String longitud, String nombre
-                   Hectarea hectarea = new Hectarea(idFoto, LoginActivity.administrador.getDocumento(),
+                   Hectarea hectarea = new Hectarea(idFoto, nombre,
                     String.valueOf(UbicacionHectarea.latLngActual.latitude),
-                           String.valueOf(UbicacionHectarea.latLngActual.longitude),nombre);
+                           String.valueOf(UbicacionHectarea.latLngActual.longitude),LoginActivity.administrador.getDocumento());
 
                    if(controlador.guardarHectarea(hectarea)){
                        Toast.makeText(getActivity(), "Registro Exitoso", Toast.LENGTH_LONG).show();

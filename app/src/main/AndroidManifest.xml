@@ -53,9 +53,7 @@
             android:value="@string/google_maps_key" />
 
         <activity android:name=".RegistrarAdministrador" />
-        <activity
-            android:name=".maps.AgregarUbicacion"
-            android:label="@string/title_activity_agregar_ubicacion" />
+
         <activity
             android:name=".maps.UbicacionHectarea"
             android:label="@string/title_activity_ubicacion_hectarea"></activity>

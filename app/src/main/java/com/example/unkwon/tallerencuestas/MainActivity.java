@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity
         controlador = new Controller(this);
         LoginActivity.administrador.setListaTrabajadores(controlador.listarTrabajadores());
         LoginActivity.administrador.setListaMateriales(controlador.listarMateriales());
+        LoginActivity.administrador.setListaHectareas(controlador.listarHectareas());
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 

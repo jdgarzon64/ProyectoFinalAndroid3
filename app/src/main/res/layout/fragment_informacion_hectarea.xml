@@ -3,19 +3,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="Fragments.InformacionHectarea"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     >
 
-    <!-- TODO: Update blank fragment layout -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_marginTop="120dp">
+        android:layout_marginTop="120dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
 
-        <TextView
+
+        <ListView
+            android:id="@+id/listadoHectareas"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Informacion" />
+            android:clickable="true"
+            android:focusable="true"
+            android:focusableInTouchMode="true" />
     </LinearLayout>
 
 </FrameLayout>
+

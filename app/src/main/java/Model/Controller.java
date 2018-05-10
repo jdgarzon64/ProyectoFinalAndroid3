@@ -223,6 +223,23 @@ public class Controller {
         registro.put("idAdministrador", hectarea.getIdAdministrador());
         return pers.ejecutarInsert("hectareas", registro);
     }
+
+    public ArrayList<Hectarea> listarHectareas() {
+        ArrayList<Hectarea> listaHectareas = new ArrayList<>();
+
+        String consulta = "select idHectarea, idFoto, nombre, latitud, longitud, idAdministrador" +
+                " from hectareas where idAdministrador = " + LoginActivity.administrador.getDocumento();
+        Cursor temp = pers.ejecutarSearch(consulta);
+        if (temp.moveToFirst()) {
+            do {
+                Hectarea hectarea = new Hectarea(temp.getString(1), temp.getString(2), temp.getString(3),
+                        temp.getString(4),temp.getInt(5));
+                hectarea.setIdHectarea(temp.getInt(0));
+                listaHectareas.add(hectarea);
+            } while (temp.moveToNext());
+        }
+        return listaHectareas;
+    }
 /*
     public boolean guardarCiudadanoInfoLaboral(int documento,
                                                String empresa, String direccionEmpresa,
