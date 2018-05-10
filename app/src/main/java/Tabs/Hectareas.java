@@ -7,7 +7,12 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.Toast;
 
+import com.example.unkwon.tallerencuestas.LoginActivity;
 import com.example.unkwon.tallerencuestas.R;
 
 import Model.Controller;
@@ -15,6 +20,8 @@ import Model.Controller;
 
 public class Hectareas extends Fragment {
 
+    View view;
+    ListView listadoHectareas;
 
 
     Controller controlador;
@@ -23,24 +30,40 @@ public class Hectareas extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_listar_hectareas, container, false);
-        configView(v);
-        return v;
+        view = inflater.inflate(R.layout.fragment_listar_hectareas, container, false);
+        listadoHectareas = view.findViewById(R.id.listadoHectareas);
+        configurarListaHectareas();
+        return view;
     }
 
-    public void configView(View view) {
 
-
-
-       // controlador = new Controller(getActivity());
-
-        FloatingActionButton update = (FloatingActionButton) view.findViewById(R.id.saveib);
-        update.setOnClickListener(new View.OnClickListener() {
+    public void configurarListaHectareas() {
+        Toast.makeText(getContext(), "mi tamaño " + LoginActivity.administrador.getListaHectareas().size(), Toast.LENGTH_LONG).show();
+        String[] listadoNombres = new String[LoginActivity.administrador.getListaHectareas().size()];
+        for (int i = 0; i < listadoNombres.length; i++) {
+            listadoNombres[i] = LoginActivity.administrador.getListaHectareas().get(i).getNombre();
+        }
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, listadoNombres);
+        listadoHectareas.setAdapter(adapter);
+        listadoHectareas.setClickable(true);
+        listadoHectareas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Toast.makeText(getContext(), "!!!!!!!!!!!!!!1", Toast.LENGTH_LONG).show();
+            }
+        });
+        /*
+        listadoHectareas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(getContext(), "!!!!!!!!!!!!!!1", Toast.LENGTH_LONG).show();
+
+                Toast.makeText(getActivity(), LoginActivity.administrador.getListaHectareas().get(position).getNombre()
+                        , Toast.LENGTH_LONG).show();
+
 
             }
         });
-
+*/
     }
 }

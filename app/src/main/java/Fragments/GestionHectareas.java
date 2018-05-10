@@ -91,7 +91,7 @@ public class GestionHectareas extends Fragment {
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
-                    return new InformacionHectarea();
+                    return new Hectareas();
                 case 1:
                     return new RegistrarRiego();
                 case 2:

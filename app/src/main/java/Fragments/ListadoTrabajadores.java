@@ -53,9 +53,6 @@ public class ListadoTrabajadores extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (position >= 0) {
-                    // MainActivity.indexCiudadano = position;
-                    //  FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                    // fragmentManager.beginTransaction().replace(R.id.content_main, new RegistrarCiudadanosNav()).commit();
                     Toast.makeText(getContext(), LoginActivity.administrador.getListaTrabajadores().get(position).getNombre() +
                             " " + LoginActivity.administrador.getListaTrabajadores().get(position).getApellido(), Toast.LENGTH_LONG).show();
                 }
