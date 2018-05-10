@@ -15,6 +15,7 @@ import android.widget.ListView;
 
 
 import com.example.unkwon.tallerencuestas.R;
+
 import Tabs.Hectareas;
 import Tabs.HistorialHectareas;
 import Tabs.RegistrarRiego;
@@ -27,12 +28,11 @@ public class GestionHectareas extends Fragment {
     private TabLayout tabs;
 
     private ViewPager viewPager;
-ListView listaCultivos;
+    ListView listaCultivos;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
 
 
     }
@@ -41,7 +41,7 @@ ListView listaCultivos;
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view =  inflater.inflate(R.layout.fragment_gestion_hectareas, container, false);
+        View view = inflater.inflate(R.layout.fragment_gestion_hectareas, container, false);
 
         View contenedor = (View) container.getParent();
 
@@ -54,11 +54,11 @@ ListView listaCultivos;
     }
 
 
-    public void configView(View view){
+    public void configView(View view) {
 
         tabs = new TabLayout(getActivity());
 
-        tabs.setTabTextColors(Color.parseColor("#FFFFFF"),Color.parseColor("#FFFFFF"));
+        tabs.setTabTextColors(Color.parseColor("#FFFFFF"), Color.parseColor("#FFFFFF"));
 
         appBar.addView(tabs);
 
@@ -89,7 +89,7 @@ ListView listaCultivos;
 
         @Override
         public Fragment getItem(int position) {
-            switch (position){
+            switch (position) {
                 case 0:
                     return new InformacionHectarea();
                 case 1:

@@ -3,13 +3,18 @@ package Model;
 public class Hectarea {
 
     public int idHectarea;
-    public int idFoto;
+    public String idFoto;
     public int idAdministrador;
+    public String latitud;
+    public String longitud;
+    public String nombre;
 
-    public Hectarea(int idHectarea, int idFoto, int idAdministrador) {
-        this.idHectarea = idHectarea;
+    public Hectarea(String idFoto, int idAdministrador, String latitud, String longitud, String nombre) {
         this.idFoto = idFoto;
         this.idAdministrador = idAdministrador;
+        this.latitud = latitud;
+        this.longitud = longitud;
+        this.nombre = nombre;
     }
 
     public int getIdHectarea() {
@@ -20,11 +25,11 @@ public class Hectarea {
         this.idHectarea = idHectarea;
     }
 
-    public int getIdFoto() {
+    public String getIdFoto() {
         return idFoto;
     }
 
-    public void setIdFoto(int idFoto) {
+    public void setIdFoto(String idFoto) {
         this.idFoto = idFoto;
     }
 
@@ -34,5 +39,29 @@ public class Hectarea {
 
     public void setIdAdministrador(int idAdministrador) {
         this.idAdministrador = idAdministrador;
+    }
+
+    public String getLatitud() {
+        return latitud;
+    }
+
+    public void setLatitud(String latitud) {
+        this.latitud = latitud;
+    }
+
+    public String getLongitud() {
+        return longitud;
+    }
+
+    public void setLongitud(String longitud) {
+        this.longitud = longitud;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 }

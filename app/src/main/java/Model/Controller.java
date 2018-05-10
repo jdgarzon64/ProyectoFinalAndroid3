@@ -213,6 +213,16 @@ public class Controller {
         }
         return listaMateriales;
     }
+
+    public boolean guardarHectarea(Hectarea hectarea) {
+        ContentValues registro = new ContentValues();
+        registro.put("idFoto", hectarea.getIdFoto());
+        registro.put("nombre", hectarea.getNombre());
+        registro.put("latitud", hectarea.getLatitud());
+        registro.put("longitud", hectarea.getLongitud());
+        registro.put("idAdministrador", hectarea.getIdAdministrador());
+        return pers.ejecutarInsert("hectareas", registro);
+    }
 /*
     public boolean guardarCiudadanoInfoLaboral(int documento,
                                                String empresa, String direccionEmpresa,
