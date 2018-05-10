@@ -42,8 +42,8 @@ public class MainActivity extends AppCompatActivity
 
 
     Controller controlador;
-    TextView profileName;
-    TextView profileApellido;
+    public static TextView profileName;
+    public static TextView profileApellido;
 
 
     @Override
