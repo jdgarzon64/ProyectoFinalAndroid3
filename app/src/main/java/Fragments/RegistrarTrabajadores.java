@@ -72,9 +72,9 @@ public class RegistrarTrabajadores extends Fragment {
             Toast.makeText(getContext(), "debe llenar todos los campos", Toast.LENGTH_LONG).show();
         } else {
             String nombre = nombreTrabajador.getText().toString();
-            String apellido = nombreTrabajador.getText().toString();
-            String documento = nombreTrabajador.getText().toString();
-            String edad = nombreTrabajador.getText().toString();
+            String apellido = apellidoTrabajador.getText().toString();
+            String documento = documentoTrabajador.getText().toString();
+            String edad = edadTrabajador.getText().toString();
             String usuario = usuarioTrabajador.getText().toString();
             String password = passwordTrabajador.getText().toString();
 

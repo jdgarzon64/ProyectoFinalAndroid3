@@ -15,7 +15,6 @@ import android.widget.Toast;
 import com.example.unkwon.tallerencuestas.LoginActivity;
 import com.example.unkwon.tallerencuestas.R;
 
-
 public class ListadoTrabajadores extends Fragment {
     View view;
     ListView listadoTrabajadores;
@@ -44,10 +43,11 @@ public class ListadoTrabajadores extends Fragment {
         String[] listadoNombres = new String[LoginActivity.administrador.getListaTrabajadores().size()];
         for (int i = 0; i < listadoNombres.length; i++) {
             listadoNombres[i] = LoginActivity.administrador.getListaTrabajadores().get(i).getNombre() + " "
-                    + LoginActivity.administrador.getListaTrabajadores().get(i).getApellido();
-        }
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, listadoNombres);
+                + LoginActivity.administrador.getListaTrabajadores().get(i).getApellido();
+    }
+    ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, listadoNombres);
         listadoTrabajadores.setAdapter(adapter);
+
         listadoTrabajadores.setClickable(true);
         listadoTrabajadores.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

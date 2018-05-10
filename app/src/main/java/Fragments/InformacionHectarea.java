@@ -1,7 +1,5 @@
 package Fragments;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -19,6 +17,10 @@ public class InformacionHectarea extends Fragment {
     View view;
     ListView listadoHectareas;
 
+    public InformacionHectarea() {
+
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +32,8 @@ public class InformacionHectarea extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_informacion_hectarea, container, false);
         listadoHectareas = view.findViewById(R.id.listadoHectareas);
+
+
         configurarListaHectareas();
         return view;
     }
@@ -41,20 +45,20 @@ public class InformacionHectarea extends Fragment {
         for (int i = 0; i < listadoNombres.length; i++) {
             listadoNombres[i] = LoginActivity.administrador.getListaHectareas().get(i).getNombre();
         }
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, listadoNombres);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, listadoNombres);
         listadoHectareas.setAdapter(adapter);
         listadoHectareas.setClickable(true);
         listadoHectareas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getActivity(), "!!!!!!!!!!!!!!1", Toast.LENGTH_LONG).show();
-                /*
-                if (position >= 0) {
+                Toast.makeText(getContext(), "!!!!!!!!!!!!!!1", Toast.LENGTH_LONG).show();
+
                     Toast.makeText(getActivity(), LoginActivity.administrador.getListaHectareas().get(position).getNombre()
                             , Toast.LENGTH_LONG).show();
-                }
-*/
+                
+
             }
         });
+
     }
 }
