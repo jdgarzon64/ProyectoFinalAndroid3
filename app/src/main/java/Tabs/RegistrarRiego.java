@@ -7,12 +7,17 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import com.example.unkwon.tallerencuestas.LoginActivity;
 import com.example.unkwon.tallerencuestas.R;
 
+import java.util.ArrayList;
+
 import Model.Controller;
+import Model.Trabajador;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -30,12 +35,12 @@ public class RegistrarRiego extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-         view = inflater.inflate(R.layout.fragment_registrar_riego, container, false);
-        configView(view);
+        view = inflater.inflate(R.layout.fragment_registrar_riego, container, false);
         listaTrabajadores = view.findViewById(R.id.listaTrabajadores);
         listaMateriales = view.findViewById(R.id.listaMateriales);
         cantidadMaterial = view.findViewById(R.id.cantidadMaterial);
         fechaRiego = view.findViewById(R.id.fechaRiego);
+        configView(view);
         return view;
     }
 
@@ -76,8 +81,23 @@ public class RegistrarRiego extends Fragment {
             public void onClick(View view) {
             }
         });
-
-
+        cargarTrabajadores();
     }
 
+    public void cargarTrabajadores() {
+        ArrayList<String> nombresUsuarios = new ArrayList<>();
+
+        if (LoginActivity.administrador.getListaTrabajadores() != null || LoginActivity.administrador.getListaTrabajadores().size() > 0) {
+
+            for (Trabajador user : LoginActivity.administrador.getListaTrabajadores()) {
+                nombresUsuarios.add(user.getNombre() + " " + user.getApellido());
+            }
+        } else {
+            nombresUsuarios.clear();
+            nombresUsuarios.add("No hay trabajadores registrados");
+        }
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
+                android.R.layout.simple_list_item_1, nombresUsuarios);
+        listaTrabajadores.setAdapter(adapter);
+    }
 }

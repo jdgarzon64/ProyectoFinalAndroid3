@@ -1,6 +1,7 @@
 package Tabs;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -15,13 +16,16 @@ import android.widget.Toast;
 import com.example.unkwon.tallerencuestas.LoginActivity;
 import com.example.unkwon.tallerencuestas.R;
 
+import Fragments.GestionHectareas;
 import Model.Controller;
+import Model.Hectarea;
 
 
 public class Hectareas extends Fragment {
 
     View view;
     ListView listadoHectareas;
+    Hectarea hectarea = null;
 
 
     Controller controlador;
@@ -49,21 +53,11 @@ public class Hectareas extends Fragment {
         listadoHectareas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(getContext(), "!!!!!!!!!!!!!!1", Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), "Hectarea "+ LoginActivity.administrador.getListaHectareas().get(i).getNombre() + " seleccionada", Toast.LENGTH_LONG).show();
+                hectarea =LoginActivity.administrador.getListaHectareas().get(i);
+                GestionHectareas.viewPager.setCurrentItem(1);
             }
         });
-        /*
-        listadoHectareas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getContext(), "!!!!!!!!!!!!!!1", Toast.LENGTH_LONG).show();
 
-                Toast.makeText(getActivity(), LoginActivity.administrador.getListaHectareas().get(position).getNombre()
-                        , Toast.LENGTH_LONG).show();
-
-
-            }
-        });
-*/
     }
 }

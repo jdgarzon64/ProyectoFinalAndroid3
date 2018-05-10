@@ -27,7 +27,7 @@ public class GestionHectareas extends Fragment {
 
     private TabLayout tabs;
 
-    private ViewPager viewPager;
+    public static ViewPager viewPager;
     ListView listaCultivos;
 
     @Override
@@ -42,14 +42,9 @@ public class GestionHectareas extends Fragment {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_gestion_hectareas, container, false);
-
         View contenedor = (View) container.getParent();
-
         appBar = (AppBarLayout) contenedor.findViewById(R.id.appbar);
-        listaCultivos = view.findViewById(R.id.listaCultivos);
-
         configView(view);
-
         return view;
     }
 
@@ -110,6 +105,4 @@ public class GestionHectareas extends Fragment {
             return tituloTabs[position];
         }
     }
-
-
 }

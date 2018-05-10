@@ -36,6 +36,7 @@ import Fragments.RegistrarMateriales;
 import Fragments.RegistrarTrabajadores;
 import Model.Controller;
 import Model.Trabajador;
+import Tabs.Hectareas;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -67,7 +68,7 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.MasterPage, new ListadoDeTareas()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.MasterPage, new Hectareas()).commit();
         //imageView = (ImageView) findViewById(R.id.imageView);
 
         askForPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, 1);
