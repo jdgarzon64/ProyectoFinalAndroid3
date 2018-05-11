@@ -54,8 +54,8 @@ public class Controller {
     }
 
     public void actualizarMaterial(Material material) {
-        for(int i =0;i<LoginActivity.administrador.getListaMateriales().size();i++){
-            if(LoginActivity.administrador.getListaMateriales().get(i).getNombre().equals(material.getNombre())){
+        for (int i = 0; i < LoginActivity.administrador.getListaMateriales().size(); i++) {
+            if (LoginActivity.administrador.getListaMateriales().get(i).getNombre().equals(material.getNombre())) {
                 LoginActivity.administrador.getListaMateriales().remove(i);
                 LoginActivity.administrador.getListaMateriales().add(material);
             }
@@ -65,7 +65,7 @@ public class Controller {
     public Material buscarMaterial(String nombre) {
         Material material = null;
         String consulta = "select nombre, cantidad, marca, descripcion, idAdministrador" +
-                " from materiales where nombre = '" + nombre+"'";
+                " from materiales where nombre = '" + nombre + "'";
         Cursor temp = pers.ejecutarSearch(consulta);
         if (temp.getCount() > 0) {
             temp.moveToFirst();
@@ -233,12 +233,23 @@ public class Controller {
         if (temp.moveToFirst()) {
             do {
                 Hectarea hectarea = new Hectarea(temp.getString(1), temp.getString(2), temp.getString(3),
-                        temp.getString(4),temp.getInt(5));
+                        temp.getString(4), temp.getInt(5));
                 hectarea.setIdHectarea(temp.getInt(0));
                 listaHectareas.add(hectarea);
             } while (temp.moveToNext());
         }
         return listaHectareas;
+    }
+
+    public int obtenerCantidadMaterial(int idMat) {
+        String consulta = "select cantidad from materiales where idMaterial ='" + String.valueOf(idMat+1) + "'";
+        Cursor temp = pers.ejecutarSearch(consulta);
+        if (temp.moveToFirst()) {
+            // return Integer.parseInt(temp.getString(0));
+           return Integer.parseInt(temp.getString(0));
+        } else {
+            return 0;
+        }
     }
 /*
     public boolean guardarCiudadanoInfoLaboral(int documento,
