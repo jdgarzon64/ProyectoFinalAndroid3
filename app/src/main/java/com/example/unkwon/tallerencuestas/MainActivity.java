@@ -17,8 +17,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import java.io.File;
@@ -28,14 +26,12 @@ import Fragments.ConsultarClima;
 import Fragments.ConsultarDolar;
 import Fragments.InformacionCuenta;
 import Fragments.GestionHectareas;
-import Fragments.ListadoDeTareas;
 import Fragments.ListadoMateriales;
 import Fragments.ListadoTrabajadores;
 import Fragments.RegistrarHectarea;
 import Fragments.RegistrarMateriales;
 import Fragments.RegistrarTrabajadores;
 import Model.Controller;
-import Model.Trabajador;
 import Tabs.Hectareas;
 
 public class MainActivity extends AppCompatActivity

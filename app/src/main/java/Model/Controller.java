@@ -251,6 +251,16 @@ public class Controller {
             return 0;
         }
     }
+
+    public boolean guardarRiego(Riego riego) {
+        ContentValues registro = new ContentValues();
+        registro.put("idHectarea", riego.getIdHectarea());
+        registro.put("idTrabajador", riego.getIdTrabajador());
+        registro.put("idMaterial", riego.getIdMaterial());
+        registro.put("fechaRiego", riego.getFechaRiego());
+        registro.put("cantidadMaterial", riego.getCantidadMaterial());
+        return pers.ejecutarInsert("riegos", registro);
+    }
 /*
     public boolean guardarCiudadanoInfoLaboral(int documento,
                                                String empresa, String direccionEmpresa,

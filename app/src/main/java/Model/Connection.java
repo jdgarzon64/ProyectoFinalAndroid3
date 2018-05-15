@@ -7,8 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 
-
-public class Connection  extends SQLiteOpenHelper {
+public class Connection extends SQLiteOpenHelper {
 
     private static final String database = "database.db";
     private static final SQLiteDatabase.CursorFactory factory = null;
@@ -43,6 +42,11 @@ public class Connection  extends SQLiteOpenHelper {
                 " marca text, descripcion text, idAdministrador INTEGER," +
                 " FOREIGN KEY (idAdministrador) REFERENCES administradores (documento) ON DELETE CASCADE)");
 
+        db.execSQL("create table riegos(idRiego INTEGER PRIMARY KEY AUTOINCREMENT, idHectarea integer,idTrabajador integer," +
+                "idMaterial integer, fechaRiego text, cantidadMaterial text," +
+                " FOREIGN KEY (idHectarea) REFERENCES hectareas (idHectarea) ON DELETE CASCADE," +
+                " FOREIGN KEY (idTrabajador) REFERENCES trabajadores (idTrabajador) ON DELETE CASCADE)");
+
 
 /*
 
@@ -70,6 +74,7 @@ public class Connection  extends SQLiteOpenHelper {
         db.execSQL("drop table if exists trabajadores");
         db.execSQL("drop table if exists hectareas");
         db.execSQL("drop table if exists materiales");
+        db.execSQL("drop table if exists riegos");
 
         onCreate(db);
     }
@@ -125,7 +130,7 @@ public class Connection  extends SQLiteOpenHelper {
         }
     }
 
-    public boolean ejecutarDelete(String tabla, String condicion){
+    public boolean ejecutarDelete(String tabla, String condicion) {
         bd = this.getWritableDatabase();
 
         int cant = bd.delete(tabla, condicion, null);

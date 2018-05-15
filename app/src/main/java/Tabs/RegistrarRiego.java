@@ -23,7 +23,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import Model.Controller;
+import Model.Hectarea;
 import Model.Material;
+import Model.Riego;
 import Model.Trabajador;
 
 /**
@@ -86,6 +88,7 @@ public class RegistrarRiego extends Fragment {
         update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                guardarRiego(view);
             }
         });
         cargarTrabajadores();
@@ -150,12 +153,27 @@ public class RegistrarRiego extends Fragment {
         cantidadMaterial.setAdapter(adapter);
     }
 
-    public void guardarRiego() {
+    public void guardarRiego(View view) {
         if (listaMateriales.getCount() == 0
                 || listaTrabajadores.getCount() == 0
                 || cantidadMaterial.getCount() == 0
-                ||fechaRiego.getText().toString().isEmpty()) {
+                ||fechaRiego.getText().toString().isEmpty()
+                || Hectareas.hectarea==null) {
+          Toast.makeText(getActivity(),"debe llenar todos lso campos",Toast.LENGTH_LONG).show();
+        }
+        else {
+            int idMaterial = Long.valueOf(listaMateriales.getSelectedItemId()).intValue();
+            int idTrabajador = Long.valueOf(listaTrabajadores.getSelectedItemId()).intValue();
+            String cantidadM = cantidadMaterial.getSelectedItem().toString();
+            String fecha = fechaRiego.getText().toString();
+            int idHectarea = Hectareas.hectarea.getIdHectarea();
+            Riego riego = new Riego(idHectarea,idTrabajador,idMaterial,fecha,cantidadM);
 
+            if(controlador.guardarRiego(riego)){
+                Toast.makeText(getActivity(),"registro exitoso",Toast.LENGTH_LONG).show();
+            }else {
+                Toast.makeText(getActivity(),"error en el registro",Toast.LENGTH_LONG).show();
+            }
         }
     }
 

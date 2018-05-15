@@ -25,7 +25,7 @@ public class Hectareas extends Fragment {
 
     View view;
     ListView listadoHectareas;
-    Hectarea hectarea = null;
+    public static Hectarea hectarea = null;
 
 
     Controller controlador;

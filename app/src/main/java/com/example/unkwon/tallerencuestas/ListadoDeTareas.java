@@ -1,4 +1,4 @@
-package Fragments;
+package com.example.unkwon.tallerencuestas;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -25,6 +25,10 @@ public class ListadoDeTareas extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         listadoDeTareas = (ListView) findViewById(R.id.listadoDeTareas);
+        cargarTareas();
+    }
+    public void cargarTareas(){
+        
     }
 
 }
