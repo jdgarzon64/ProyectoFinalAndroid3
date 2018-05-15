@@ -163,11 +163,11 @@ public class RegistrarRiego extends Fragment {
         }
         else {
             int idMaterial = Long.valueOf(listaMateriales.getSelectedItemId()).intValue();
-            int idTrabajador = Long.valueOf(listaTrabajadores.getSelectedItemId()).intValue();
+            Trabajador trabajador = LoginActivity.administrador.getListaTrabajadores().get(Long.valueOf(listaTrabajadores.getSelectedItemId()).intValue());
             String cantidadM = cantidadMaterial.getSelectedItem().toString();
             String fecha = fechaRiego.getText().toString();
             int idHectarea = Hectareas.hectarea.getIdHectarea();
-            Riego riego = new Riego(idHectarea,idTrabajador,idMaterial,fecha,cantidadM);
+            Riego riego = new Riego(idHectarea,trabajador.getDocumento(),idMaterial,fecha,cantidadM);
 
             if(controlador.guardarRiego(riego)){
                 Toast.makeText(getActivity(),"registro exitoso",Toast.LENGTH_LONG).show();

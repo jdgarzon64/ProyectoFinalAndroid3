@@ -261,6 +261,38 @@ public class Controller {
         registro.put("cantidadMaterial", riego.getCantidadMaterial());
         return pers.ejecutarInsert("riegos", registro);
     }
+
+    public ArrayList<Riego> buscarTareas(int documento) {
+        ArrayList<Riego> listaRiegos = new ArrayList<>();
+        String consulta = "select idRiego, idHectarea, idTrabajador, idMaterial, fechaRiego, cantidadMaterial" +
+                " from riegos where idTrabajador = "+documento;
+        Cursor temp = pers.ejecutarSearch(consulta);
+        if (temp.moveToFirst()) {
+            do {
+                Riego riego = new Riego(temp.getInt(1), temp.getInt(2), temp.getInt(3),
+                        temp.getString(4), temp.getString(5));
+                riego.setIdRiego(temp.getInt(0));
+                listaRiegos.add(riego);
+            } while (temp.moveToNext());
+        }
+        return listaRiegos;
+    }
+
+    public Hectarea buscarHectarea(int idHectarea) {
+        Hectarea hectarea = null;
+        String consulta = "select idHectarea, idFoto, nombre, latitud, longitud, idAdministrador" +
+                " from hectareas where idHectarea = " + idHectarea;
+        Cursor temp = pers.ejecutarSearch(consulta);
+        if (temp.getCount() > 0) {
+            temp.moveToFirst();
+
+            hectarea = new Hectarea(temp.getString(1), temp.getString(2),
+                    temp.getString(3), temp.getString(4), temp.getInt(5));
+            hectarea.setIdHectarea(temp.getInt(0));
+        }
+        pers.cerrarConexion();
+        return hectarea;
+    }
 /*
     public boolean guardarCiudadanoInfoLaboral(int documento,
                                                String empresa, String direccionEmpresa,

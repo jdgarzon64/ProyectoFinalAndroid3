@@ -168,7 +168,8 @@ public class MainActivity extends AppCompatActivity
         //  fragmentManager.beginTransaction().replace(R.id.MasterPage, new MostrarHectareas()).commit();
         // }
         else if (id == R.id.fragment_salir) {
-
+            LoginActivity.administrador = null;
+            LoginActivity.trabajador = null;
             System.exit(0);
 
         }
