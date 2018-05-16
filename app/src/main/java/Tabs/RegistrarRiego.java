@@ -162,14 +162,21 @@ public class RegistrarRiego extends Fragment {
           Toast.makeText(getActivity(),"debe llenar todos lso campos",Toast.LENGTH_LONG).show();
         }
         else {
-            int idMaterial = Long.valueOf(listaMateriales.getSelectedItemId()).intValue();
+            int idMaterial = listaMateriales.getSelectedItemPosition()+1;
             Trabajador trabajador = LoginActivity.administrador.getListaTrabajadores().get(Long.valueOf(listaTrabajadores.getSelectedItemId()).intValue());
             String cantidadM = cantidadMaterial.getSelectedItem().toString();
             String fecha = fechaRiego.getText().toString();
             int idHectarea = Hectareas.hectarea.getIdHectarea();
+
+            Material material=controlador.buscarMaterial(listaMateriales.getSelectedItem().toString());
+            int cantidadAnterior= Integer.parseInt(material.getCantidad());
+            int cantidadActual = cantidadAnterior-Integer.parseInt(cantidadM);
+            material.setCantidad(String.valueOf(cantidadActual));
+            material.setIdMaterial(idMaterial);
+
             Riego riego = new Riego(idHectarea,trabajador.getDocumento(),idMaterial,fecha,cantidadM);
 
-            if(controlador.guardarRiego(riego)){
+            if(controlador.guardarRiego(riego,material)){
                 Toast.makeText(getActivity(),"registro exitoso",Toast.LENGTH_LONG).show();
             }else {
                 Toast.makeText(getActivity(),"error en el registro",Toast.LENGTH_LONG).show();

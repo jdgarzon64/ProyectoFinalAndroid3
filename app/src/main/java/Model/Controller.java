@@ -45,7 +45,7 @@ public class Controller {
                 return true;
             }
         } else {
-            if (pers.ejecutarUpdate("materiales", "materiales.nombre = " + material.getNombre(), registro)) {
+            if (pers.ejecutarUpdate("materiales", "materiales.nombre = '" + material.getNombre()+"'", registro)) {
                 actualizarMaterial(material);
                 return true;
             }
@@ -252,18 +252,23 @@ public class Controller {
         }
     }
 
-    public boolean guardarRiego(Riego riego) {
+    public boolean guardarRiego(Riego riego, Material material) {
         if (riego.getIdHectarea() == 0 || riego.getIdMaterial() == 0 || riego.getIdTrabajador() == 0) {
             return false;
         } else {
+
             ContentValues registro = new ContentValues();
             registro.put("idHectarea", riego.getIdHectarea());
             registro.put("idTrabajador", riego.getIdTrabajador());
             registro.put("idMaterial", riego.getIdMaterial());
             registro.put("fechaRiego", riego.getFechaRiego());
             registro.put("cantidadMaterial", riego.getCantidadMaterial());
-            return pers.ejecutarInsert("riegos", registro);
+
+            if (pers.ejecutarInsert("riegos", registro) && guardarMaterial(material)) {
+                return true;
+            }
         }
+        return false;
     }
 
     public ArrayList<Riego> buscarTareas(int documento) {
