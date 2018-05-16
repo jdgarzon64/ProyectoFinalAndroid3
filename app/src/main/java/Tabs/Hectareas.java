@@ -53,9 +53,11 @@ public class Hectareas extends Fragment {
         listadoHectareas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(getContext(), "Hectarea "+ LoginActivity.administrador.getListaHectareas().get(i).getNombre() + " seleccionada", Toast.LENGTH_LONG).show();
-                hectarea =LoginActivity.administrador.getListaHectareas().get(i);
-                GestionHectareas.viewPager.setCurrentItem(1);
+                Toast.makeText(getContext(), "Hectarea " + LoginActivity.administrador.getListaHectareas().get(i).getNombre() + " seleccionada", Toast.LENGTH_LONG).show();
+                hectarea = LoginActivity.administrador.getListaHectareas().get(i);
+                if (GestionHectareas.viewPager != null) {
+                    GestionHectareas.viewPager.setCurrentItem(1);
+                }
             }
         });
 

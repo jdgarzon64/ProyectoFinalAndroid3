@@ -242,30 +242,34 @@ public class Controller {
     }
 
     public int obtenerCantidadMaterial(int idMat) {
-        String consulta = "select cantidad from materiales where idMaterial ='" + String.valueOf(idMat+1) + "'";
+        String consulta = "select cantidad from materiales where idMaterial ='" + String.valueOf(idMat + 1) + "'";
         Cursor temp = pers.ejecutarSearch(consulta);
         if (temp.moveToFirst()) {
             // return Integer.parseInt(temp.getString(0));
-           return Integer.parseInt(temp.getString(0));
+            return Integer.parseInt(temp.getString(0));
         } else {
             return 0;
         }
     }
 
     public boolean guardarRiego(Riego riego) {
-        ContentValues registro = new ContentValues();
-        registro.put("idHectarea", riego.getIdHectarea());
-        registro.put("idTrabajador", riego.getIdTrabajador());
-        registro.put("idMaterial", riego.getIdMaterial());
-        registro.put("fechaRiego", riego.getFechaRiego());
-        registro.put("cantidadMaterial", riego.getCantidadMaterial());
-        return pers.ejecutarInsert("riegos", registro);
+        if (riego.getIdHectarea() == 0 || riego.getIdMaterial() == 0 || riego.getIdTrabajador() == 0) {
+            return false;
+        } else {
+            ContentValues registro = new ContentValues();
+            registro.put("idHectarea", riego.getIdHectarea());
+            registro.put("idTrabajador", riego.getIdTrabajador());
+            registro.put("idMaterial", riego.getIdMaterial());
+            registro.put("fechaRiego", riego.getFechaRiego());
+            registro.put("cantidadMaterial", riego.getCantidadMaterial());
+            return pers.ejecutarInsert("riegos", registro);
+        }
     }
 
     public ArrayList<Riego> buscarTareas(int documento) {
         ArrayList<Riego> listaRiegos = new ArrayList<>();
         String consulta = "select idRiego, idHectarea, idTrabajador, idMaterial, fechaRiego, cantidadMaterial" +
-                " from riegos where idTrabajador = "+documento;
+                " from riegos where idTrabajador = " + documento;
         Cursor temp = pers.ejecutarSearch(consulta);
         if (temp.moveToFirst()) {
             do {
