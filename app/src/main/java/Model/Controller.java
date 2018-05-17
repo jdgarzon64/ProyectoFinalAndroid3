@@ -302,6 +302,21 @@ public class Controller {
         pers.cerrarConexion();
         return hectarea;
     }
+    public ArrayList<Riego> historialDeRiegos(int idHectarea){
+        ArrayList<Riego> listaRiegos = new ArrayList<>();
+        String consulta = "select idRiego, idHectarea, idTrabajador, idMaterial, fechaRiego, cantidadMaterial" +
+                " from riegos where idHectarea = " + idHectarea;
+        Cursor temp = pers.ejecutarSearch(consulta);
+        if (temp.moveToFirst()) {
+            do {
+                Riego riego = new Riego(temp.getInt(1), temp.getInt(2), temp.getInt(3),
+                        temp.getString(4), temp.getString(5));
+                riego.setIdRiego(temp.getInt(0));
+                listaRiegos.add(riego);
+            } while (temp.moveToNext());
+        }
+        return listaRiegos;
+    }
 /*
     public boolean guardarCiudadanoInfoLaboral(int documento,
                                                String empresa, String direccionEmpresa,

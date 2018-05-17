@@ -1,9 +1,9 @@
 package com.example.unkwon.tallerencuestas;
 
 
-
-
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -20,8 +20,9 @@ import Model.Riego;
 
 public class ListadoDeTareas extends AppCompatActivity {
     ListView listadoDeTareas;
-    ArrayList<Riego>listadoDeRiegos = null;
+    ArrayList<Riego> listadoDeRiegos = null;
     Controller controlador;
+    String tarea = "";
 
 
     @Override
@@ -32,6 +33,7 @@ public class ListadoDeTareas extends AppCompatActivity {
         controlador = new Controller(this);
         configurarListaTareas();
     }
+
     public void configurarListaTareas() {
 
         listadoDeRiegos = controlador.buscarTareas(LoginActivity.trabajador.getDocumento());
@@ -39,8 +41,8 @@ public class ListadoDeTareas extends AppCompatActivity {
 
         String[] tareas = new String[listadoDeRiegos.size()];
         for (int i = 0; i < listadoDeRiegos.size(); i++) {
-            Hectarea hectarea =controlador.buscarHectarea(listadoDeRiegos.get(i).getIdHectarea());
-            if(hectarea!=null){
+            Hectarea hectarea = controlador.buscarHectarea(listadoDeRiegos.get(i).getIdHectarea());
+            if (hectarea != null) {
                 tareas[i] = hectarea.getNombre();
             }
         }
@@ -51,11 +53,8 @@ public class ListadoDeTareas extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (position >= 0) {
-                    // MainActivity.indexCiudadano = position;
-                    //  FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                    // fragmentManager.beginTransaction().replace(R.id.content_main, new RegistrarCiudadanosNav()).commit();
-                   // Toast.makeText(getApplicationContext(), LoginActivity.administrador.getListaMateriales().get(position).getNombre() +
-                    //        " " + LoginActivity.administrador.getListaMateriales().get(position).getCantidad(), Toast.LENGTH_LONG).show();
+                    mostrarTarea(position);
+                    crearDialog();
                 }
 
             }
@@ -63,4 +62,24 @@ public class ListadoDeTareas extends AppCompatActivity {
 
     }
 
+    public void crearDialog() {
+        final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder.setTitle("Tarea asignada");
+        alertDialogBuilder.setMessage(tarea);
+
+
+        AlertDialog.Builder ok = alertDialogBuilder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+                dialogInterface.dismiss();
+            }
+        });
+        final AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+    }
+
+    public void mostrarTarea(int pos) {
+        tarea = listadoDeRiegos.get(pos).toString();
+    }
 }

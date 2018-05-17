@@ -16,6 +16,17 @@ public class Riego {
         this.cantidadMaterial = cantidadMaterial;
     }
 
+    @Override
+    public String toString() {
+        /*
+        return "Riego{" +
+                "fechaRiego='" + fechaRiego + '\'' +
+                ", cantidadMaterial='" + cantidadMaterial + '\'' +
+                '}';
+                */
+        return "Fecha de Riego: "+fechaRiego+"\n"+ "Cantidad de Material: "+cantidadMaterial;
+    }
+
     public int getIdRiego() {
         return idRiego;
     }
@@ -63,4 +74,5 @@ public class Riego {
     public void setCantidadMaterial(String cantidadMaterial) {
         this.cantidadMaterial = cantidadMaterial;
     }
+
 }
