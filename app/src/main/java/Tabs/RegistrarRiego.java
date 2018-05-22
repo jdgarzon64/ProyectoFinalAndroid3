@@ -174,7 +174,7 @@ public class RegistrarRiego extends Fragment {
             material.setCantidad(String.valueOf(cantidadActual));
             material.setIdMaterial(idMaterial);
 
-            Riego riego = new Riego(idHectarea,trabajador.getDocumento(),idMaterial,fecha,cantidadM);
+            Riego riego = new Riego(idHectarea,trabajador.getDocumento(),idMaterial,fecha,cantidadM,false);
 
             if(controlador.guardarRiego(riego,material)){
                 Toast.makeText(getActivity(),"registro exitoso",Toast.LENGTH_LONG).show();

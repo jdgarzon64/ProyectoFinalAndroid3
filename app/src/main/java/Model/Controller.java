@@ -45,7 +45,7 @@ public class Controller {
                 return true;
             }
         } else {
-            if (pers.ejecutarUpdate("materiales", "materiales.nombre = '" + material.getNombre()+"'", registro)) {
+            if (pers.ejecutarUpdate("materiales", "materiales.nombre = '" + material.getNombre() + "'", registro)) {
                 actualizarMaterial(material);
                 return true;
             }
@@ -263,6 +263,7 @@ public class Controller {
             registro.put("idMaterial", riego.getIdMaterial());
             registro.put("fechaRiego", riego.getFechaRiego());
             registro.put("cantidadMaterial", riego.getCantidadMaterial());
+            registro.put("estado", riego.isEstado());
 
             if (pers.ejecutarInsert("riegos", registro) && guardarMaterial(material)) {
                 return true;
@@ -273,13 +274,14 @@ public class Controller {
 
     public ArrayList<Riego> buscarTareas(int documento) {
         ArrayList<Riego> listaRiegos = new ArrayList<>();
-        String consulta = "select idRiego, idHectarea, idTrabajador, idMaterial, fechaRiego, cantidadMaterial" +
+        String consulta = "select idRiego, idHectarea, idTrabajador, idMaterial, fechaRiego, cantidadMaterial, estado" +
                 " from riegos where idTrabajador = " + documento;
         Cursor temp = pers.ejecutarSearch(consulta);
         if (temp.moveToFirst()) {
             do {
+                boolean estado = temp.getInt(6) > 0;
                 Riego riego = new Riego(temp.getInt(1), temp.getInt(2), temp.getInt(3),
-                        temp.getString(4), temp.getString(5));
+                        temp.getString(4), temp.getString(5), estado);
                 riego.setIdRiego(temp.getInt(0));
                 listaRiegos.add(riego);
             } while (temp.moveToNext());
@@ -302,21 +304,36 @@ public class Controller {
         pers.cerrarConexion();
         return hectarea;
     }
-    public ArrayList<Riego> historialDeRiegos(int idHectarea){
+
+    public ArrayList<Riego> historialDeRiegos(int idHectarea) {
         ArrayList<Riego> listaRiegos = new ArrayList<>();
-        String consulta = "select idRiego, idHectarea, idTrabajador, idMaterial, fechaRiego, cantidadMaterial" +
+        String consulta = "select idRiego, idHectarea, idTrabajador, idMaterial, fechaRiego, cantidadMaterial, estado" +
                 " from riegos where idHectarea = " + idHectarea;
         Cursor temp = pers.ejecutarSearch(consulta);
         if (temp.moveToFirst()) {
             do {
+                boolean estado = temp.getInt(6) > 0;
                 Riego riego = new Riego(temp.getInt(1), temp.getInt(2), temp.getInt(3),
-                        temp.getString(4), temp.getString(5));
+                        temp.getString(4), temp.getString(5), estado);
                 riego.setIdRiego(temp.getInt(0));
                 listaRiegos.add(riego);
             } while (temp.moveToNext());
         }
         return listaRiegos;
     }
+
+    public boolean cambiarEstado(Riego riego) {
+        ContentValues registro = new ContentValues();
+        registro.put("idHectarea", riego.getIdHectarea());
+        registro.put("idTrabajador", riego.getIdTrabajador());
+        registro.put("idMaterial", riego.getIdMaterial());
+        registro.put("fechaRiego", riego.getFechaRiego());
+        registro.put("cantidadMaterial", riego.getCantidadMaterial());
+        registro.put("estado", riego.isEstado());
+        return pers.ejecutarUpdate("riegos", "riegos.idRiego = " + riego.getIdRiego(), registro);
+
+    }
+
 /*
     public boolean guardarCiudadanoInfoLaboral(int documento,
                                                String empresa, String direccionEmpresa,

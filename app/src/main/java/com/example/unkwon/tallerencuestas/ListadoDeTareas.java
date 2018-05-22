@@ -54,7 +54,7 @@ public class ListadoDeTareas extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (position >= 0) {
                     mostrarTarea(position);
-                    crearDialog();
+                    crearDialog(position);
                 }
 
             }
@@ -62,13 +62,23 @@ public class ListadoDeTareas extends AppCompatActivity {
 
     }
 
-    public void crearDialog() {
+    public void crearDialog(final int position) {
         final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
         alertDialogBuilder.setTitle("Tarea asignada");
         alertDialogBuilder.setMessage(tarea);
 
 
-        AlertDialog.Builder ok = alertDialogBuilder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+        AlertDialog.Builder aceptar = alertDialogBuilder.setPositiveButton("terminar tarea", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                if (controlador.cambiarEstado(listadoDeRiegos.get(position))) {
+                    Toast.makeText(getApplicationContext(),"tarea terminada",Toast.LENGTH_LONG).show();
+                    dialogInterface.dismiss();
+
+                }
+            }
+        });
+        AlertDialog.Builder cancelar = alertDialogBuilder.setNegativeButton("cancelar", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
 
@@ -81,5 +91,13 @@ public class ListadoDeTareas extends AppCompatActivity {
 
     public void mostrarTarea(int pos) {
         tarea = listadoDeRiegos.get(pos).toString();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        this.listadoDeRiegos.clear();
+        this.listadoDeTareas.setAdapter(null);
+        configurarListaTareas();
     }
 }

@@ -43,7 +43,7 @@ public class Connection extends SQLiteOpenHelper {
                 " FOREIGN KEY (idAdministrador) REFERENCES administradores (documento) ON DELETE CASCADE)");
 
         db.execSQL("create table riegos(idRiego INTEGER PRIMARY KEY AUTOINCREMENT, idHectarea integer,idTrabajador integer," +
-                "idMaterial integer, fechaRiego text, cantidadMaterial text," +
+                "idMaterial integer, fechaRiego text, cantidadMaterial text,estado boolean," +
                 " FOREIGN KEY (idHectarea) REFERENCES hectareas (idHectarea) ON DELETE CASCADE," +
                 " FOREIGN KEY (idTrabajador) REFERENCES trabajadores (idTrabajador) ON DELETE CASCADE)");
 

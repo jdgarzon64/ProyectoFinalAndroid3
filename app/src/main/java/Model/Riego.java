@@ -7,13 +7,15 @@ public class Riego {
     public int idMaterial;
     public String fechaRiego;
     public String cantidadMaterial;
+    public boolean estado;
 
-    public Riego(int idHectarea, int idTrabajador, int idMaterial, String fechaRiego, String cantidadMaterial) {
+    public Riego(int idHectarea, int idTrabajador, int idMaterial, String fechaRiego, String cantidadMaterial,boolean estado) {
         this.idHectarea = idHectarea;
         this.idTrabajador = idTrabajador;
         this.idMaterial = idMaterial;
         this.fechaRiego = fechaRiego;
         this.cantidadMaterial = cantidadMaterial;
+        this.estado= estado;
     }
 
     @Override
@@ -25,6 +27,14 @@ public class Riego {
                 '}';
                 */
         return "Fecha de Riego: "+fechaRiego+"\n"+ "Cantidad de Material: "+cantidadMaterial;
+    }
+
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
     }
 
     public int getIdRiego() {
