@@ -275,7 +275,7 @@ public class Controller {
     public ArrayList<Riego> buscarTareas(int documento) {
         ArrayList<Riego> listaRiegos = new ArrayList<>();
         String consulta = "select idRiego, idHectarea, idTrabajador, idMaterial, fechaRiego, cantidadMaterial, estado" +
-                " from riegos where idTrabajador = " + documento;
+                " from riegos where idTrabajador = " + documento+" and estado = 0";
         Cursor temp = pers.ejecutarSearch(consulta);
         if (temp.moveToFirst()) {
             do {
@@ -329,7 +329,7 @@ public class Controller {
         registro.put("idMaterial", riego.getIdMaterial());
         registro.put("fechaRiego", riego.getFechaRiego());
         registro.put("cantidadMaterial", riego.getCantidadMaterial());
-        registro.put("estado", riego.isEstado());
+        registro.put("estado", 1);
         return pers.ejecutarUpdate("riegos", "riegos.idRiego = " + riego.getIdRiego(), registro);
 
     }

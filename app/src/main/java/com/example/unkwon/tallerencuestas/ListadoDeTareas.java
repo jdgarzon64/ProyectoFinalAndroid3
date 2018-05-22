@@ -74,6 +74,7 @@ public class ListadoDeTareas extends AppCompatActivity {
                 if (controlador.cambiarEstado(listadoDeRiegos.get(position))) {
                     Toast.makeText(getApplicationContext(),"tarea terminada",Toast.LENGTH_LONG).show();
                     dialogInterface.dismiss();
+                    configurarListaTareas();
 
                 }
             }
