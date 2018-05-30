@@ -42,7 +42,7 @@ public class Hectareas extends Fragment {
 
 
     public void configurarListaHectareas() {
-        Toast.makeText(getContext(), "mi tamaño " + LoginActivity.administrador.getListaHectareas().size(), Toast.LENGTH_LONG).show();
+      //  Toast.makeText(getContext(), "mi tamaño " + LoginActivity.administrador.getListaHectareas().size(), Toast.LENGTH_LONG).show();
         String[] listadoNombres = new String[LoginActivity.administrador.getListaHectareas().size()];
         for (int i = 0; i < listadoNombres.length; i++) {
             listadoNombres[i] = LoginActivity.administrador.getListaHectareas().get(i).getNombre();

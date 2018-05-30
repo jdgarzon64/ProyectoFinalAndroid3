@@ -38,7 +38,7 @@ public class ListadoMateriales extends Fragment {
     }
 
     public void configurarListaMateriales() {
-        Toast.makeText(getContext(), "mi tamaño " + LoginActivity.administrador.getListaMateriales().size(), Toast.LENGTH_LONG).show();
+       // Toast.makeText(getContext(), "mi tamaño " + LoginActivity.administrador.getListaMateriales().size(), Toast.LENGTH_LONG).show();
         String[] listadoNombres = new String[LoginActivity.administrador.getListaMateriales().size()];
         for (int i = 0; i < listadoNombres.length; i++) {
             listadoNombres[i] = LoginActivity.administrador.getListaMateriales().get(i).getNombre() + " "

@@ -39,7 +39,7 @@ public class ListadoTrabajadores extends Fragment {
     }
 
     public void configurarListaTrabajadores() {
-        Toast.makeText(getContext(), "mi tamaño " + LoginActivity.administrador.getListaTrabajadores().size(), Toast.LENGTH_LONG).show();
+        // Toast.makeText(getContext(), "mi tamaño " + LoginActivity.administrador.getListaTrabajadores().size(), Toast.LENGTH_LONG).show();
         String[] listadoNombres = new String[LoginActivity.administrador.getListaTrabajadores().size()];
         for (int i = 0; i < listadoNombres.length; i++) {
             listadoNombres[i] = LoginActivity.administrador.getListaTrabajadores().get(i).getNombre() + " "

@@ -2,7 +2,9 @@ package com.example.unkwon.tallerencuestas;
 
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -31,13 +33,21 @@ public class ListadoDeTareas extends AppCompatActivity {
         setContentView(R.layout.fragment_listado_de_tareas);
         this.listadoDeTareas = (ListView) findViewById(R.id.listaDeTareas);
         controlador = new Controller(this);
+        FloatingActionButton atras = (FloatingActionButton) findViewById(R.id.btnAtrasTareas);
+        atras.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(view.getContext(), LoginActivity.class);
+                startActivity(i);
+            }
+        });
         configurarListaTareas();
     }
 
     public void configurarListaTareas() {
 
         listadoDeRiegos = controlador.buscarTareas(LoginActivity.trabajador.getDocumento());
-        Toast.makeText(this, "mi tamaño " + listadoDeRiegos.size(), Toast.LENGTH_LONG).show();
+       // Toast.makeText(this, "mi tamaño " + listadoDeRiegos.size(), Toast.LENGTH_LONG).show();
 
         String[] tareas = new String[listadoDeRiegos.size()];
         for (int i = 0; i < listadoDeRiegos.size(); i++) {

@@ -97,7 +97,7 @@ public class RegistrarRiego extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long l) {
                 Object item = parent.getItemAtPosition(pos);
-                Toast.makeText(getContext(), item.toString() + " pos " + pos, Toast.LENGTH_LONG).show();
+                //Toast.makeText(getContext(), item.toString() + " pos " + pos, Toast.LENGTH_LONG).show();
                 cargarCantidad(pos);
                 cantidadMaterial.setEnabled(true);
             }

@@ -2,22 +2,9 @@ package Model;
 
 import android.app.Activity;
 import android.content.ContentValues;
-import android.content.Intent;
 import android.database.Cursor;
-import android.net.Uri;
-import android.text.TextUtils;
-import android.view.View;
-import android.widget.Toast;
-
 import com.example.unkwon.tallerencuestas.LoginActivity;
-
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
-
-import Infraestructure.HojaDeCalculo;
-import jxl.write.WriteException;
 
 
 public class Controller {
